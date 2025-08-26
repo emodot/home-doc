@@ -18,7 +18,7 @@ const Button = ({
       className={`group transition-all duration-300
                 ${
                   theme === "primary" && !disabled
-                    ? "bg-brand_primary text-white hover:bg-white"
+                    ? "bg-brand_primary text-white hover:bg-brand_secondary"
                     : ""
                 }
                 ${
@@ -44,6 +44,11 @@ const Button = ({
                 ${
                   theme === "transparent" && !disabled
                     ? "border bg-[#f2f4f700] hover:bg-brand_secondary hover:border-none"
+                    : ""
+                }
+                ${
+                  theme === "invert_transparent" && !disabled
+                    ? "border border-[#FFFFFF4D] bg-[#f2f4f700] hover:bg-white hover:border-none"
                     : ""
                 }
                 ${
@@ -81,13 +86,15 @@ const Button = ({
           <div
             className={`font-obviously_m text-14 transition-all duration-300 ${textClassName} ${
               theme === "primary"
-                ? "text-white group-hover:text-brand_primary"
+                ? "text-white group-hover:text-white"
                 : theme === "secondary"
                 ? "text-white group-hover:text-white"
                 : theme === "transparent"
                 ? "text-brand_secondary group-hover:text-white"
+                : theme === "invert_transparent"
+                ? "text-white group-hover:text-brand_secondary"
                 : theme === "white"
-                ? "text-brand_primary group-hover:text-white"
+                ? "text-brand_secondary group-hover:text-white"
                 : ""
             }`}
           >
@@ -111,6 +118,8 @@ const Button = ({
                     ? "group-hover:fill-brand_primary"
                     : theme === "transparent"
                     ? "group-hover:fill-white"
+                    : theme === "invert_transparent"
+                    ? "group-hover:fill-brand_secondary"
                     : theme === "white"
                     ? "group-hover:fill-brand_primary"
                     : ""
@@ -120,6 +129,8 @@ const Button = ({
                     ? "#053333"
                     : theme === "transparent"
                     ? "#001B2B"
+                    : theme === "invert_transparent"
+                    ? "#ffffff"
                     : theme === "white"
                     ? "#ffffff"
                     : theme === "full_transparent"
