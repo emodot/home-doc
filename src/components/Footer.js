@@ -1,40 +1,15 @@
 import { ReactComponent as Twitter } from "assets/icons/twitter.svg";
 import { ReactComponent as Instagram } from "assets/icons/instagram.svg";
 import { ReactComponent as LinkedIn } from "assets/icons/linkedin.svg";
-import Button from "components/Inputs/Button";
 import Logo from "assets/images/logo-main.png";
 import { useNavigate } from "react-router-dom";
-import Input from "./Inputs/Input";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
 
 const Footer = ({ submitEmail }) => {
   const navigate = useNavigate();
-  const [emailAddress, setEmailAddress] = useState("");
 
-  const handleChange = (e) => {
-    setEmailAddress(e.target.value);
-  };
 
-  const menuOptions = [
-    {
-      name: "Projects",
-      link: "/projects",
-    },
-    {
-      name: "Services",
-      link: "/services",
-    },
-    {
-      name: "About us",
-      link: "/about-us",
-    },
-    // {
-    //   name: "Blog",
-    //   link: "/blog",
-    // },
-  ];
 
     const quickLink = [
       {
