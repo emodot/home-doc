@@ -1,0 +1,13 @@
+{
+    "rootDir": "src",
+    "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+        "*": ["*"]
+        }
+    },
+    "typeAcquisition": {
+        "exclude": ["dotenv", "node_modules", "dist"]
+    }
+}
+  
