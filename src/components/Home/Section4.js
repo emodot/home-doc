@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
+import GetRightCare from "components/GetRightCare";
 
 const Section4 = () => {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ const Section4 = () => {
 
   return (
     <div
-      className=""
+      className="pb-[5rem]"
       style={{
         width: "100%",
         backgroundImage: `url(${Section4BG})`,
@@ -61,7 +62,7 @@ const Section4 = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto pt-[5rem] pb-[6rem]">
+      <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto pt-[5rem] pb-[3rem]">
         <div className="mt-[-20rem] bg-white rounded-[20px] p-[70px] mb-[3rem] shadow-lg">
           <div className="lg:flex justify-between items-center">
             <div className="w-[60%]">
@@ -148,6 +149,7 @@ const Section4 = () => {
           </div>
         </div>
       </div>
+      <GetRightCare />
     </div>
   );
 };

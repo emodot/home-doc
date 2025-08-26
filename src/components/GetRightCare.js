@@ -8,11 +8,20 @@ const GetRightCare = () => {
   const navigate = useNavigate();
   
   return (
-    <div className="max-w-[1300px]">
-      <div className="mt-[4rem] rounded-[20px] bg-brand_secondary px-[2rem] py-[2rem] grid lg:grid-cols-4 grid-cols-1">
-        <p className="font-publica_sans_r text-[20px] text-white col-span-3">
-          Give your parents the care they need to live well and age gracefully.
-        </p>
+    <div className="max-w-[1300px] mx-auto">
+      <div className="mt-[4rem] rounded-[20px] bg-brand_secondary px-[3rem] py-[5rem] grid lg:grid-cols-4 grid-cols-1 items-center">
+        <div className="col-span-3">
+          <p className="font-publica_sans_r text-[30px] leading-10 text-white">
+            Get the Right Care, Right Now
+          </p>
+          <p className="font-publica_sans_r text-[30px] text-white">
+            Don’t wait for things to get overwhelming.
+          </p>
+          <p className="font-publica_sans_l text-[16px] text-[#FFFFFFB2] mt-[20px] w-[50%]">
+            Book a consultation today and take the first step toward
+            compassionate, stress-free eldercare.
+          </p>
+        </div>
         <motion.div
           className="xs:flex sm:gap-4 gap-2"
           variants={fadeIn("up", 0.6)}
@@ -22,7 +31,7 @@ const GetRightCare = () => {
         >
           <Button
             name={"Get Started"}
-            theme={"white"}
+            theme={"primary"}
             textClassName="sm:text-14 !text-12"
             className="!w-[130px] xs:w-auto"
             onClick={() => navigate("/about-us")}

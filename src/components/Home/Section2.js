@@ -98,7 +98,7 @@ const Section2 = () => {
           </motion.div>
         </div>
         <motion.div
-          className="mt-[4rem] rounded-[20px] bg-brand_secondary px-[2rem] py-[2rem] grid lg:grid-cols-4 grid-cols-1"
+          className="mt-[4rem] rounded-[20px] bg-brand_secondary px-[2rem] py-[3rem] grid lg:grid-cols-4 grid-cols-1"
           variants={fadeIn("up", 0.2)}
           initial="hidden"
           whileInView="show"
