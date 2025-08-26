@@ -1,8 +1,5 @@
 import Section2AImg from "assets/images/home-sec-2a.jpg";
 import Section2BImg from "assets/images/home-sec-2b.jpg";
-import Section2BG from "assets/images/home-sec-1-bg.jpg";
-import { ReactComponent as CertifiedIcon } from "assets/icons/certified-tag.svg";
-import { ReactComponent as Shield } from "assets/icons/shield-settings.svg";
 import Button from "components/Inputs/Button";
 import { useNavigate } from "react-router-dom";
 
@@ -100,11 +97,23 @@ const Section2 = () => {
             </div>
           </motion.div>
         </div>
-        <div className="mt-[4rem] rounded-[20px] bg-brand_secondary px-[2rem] py-[2rem] grid lg:grid-cols-4 grid-cols-1">
-          <p className="font-publica_sans_r text-[20px] text-white col-span-3">
+        <motion.div
+          className="mt-[4rem] rounded-[20px] bg-brand_secondary px-[2rem] py-[2rem] grid lg:grid-cols-4 grid-cols-1"
+          variants={fadeIn("up", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <motion.p
+            className="font-publica_sans_r text-[20px] text-white col-span-3"
+            variants={fadeIn("up", 0.4)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
             Give your parents the care they need to live well and age
             gracefully.
-          </p>
+          </motion.p>
           <motion.div
             className="xs:flex sm:gap-4 gap-2"
             variants={fadeIn("up", 0.6)}
@@ -128,7 +137,7 @@ const Section2 = () => {
               onClick={() => navigate("/contact-us")}
             />
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
