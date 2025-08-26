@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
 
-const Section2 = () => {
+const Section3 = () => {
   const navigate = useNavigate();
   // const isMobile = window.innerWidth < 768;
 
   return (
     <div className="bg-brand_secondary">
-      <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto pt-[5rem] pb-[6rem]">
+      <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto pt-[5rem] pb-[20rem]">
         <div className="w-[60%]">
           <motion.h1
             className="font-publica_sans_r text-[14px] lg:text-[16px] lg:leading-[18px] leading-[16px] text-[#539E9C] mb-4"
@@ -92,4 +92,4 @@ const Section2 = () => {
   );
 };
 
-export default Section2;
+export default Section3;
