@@ -1,45 +1,46 @@
-// import { ReactComponent as Twitter } from "assets/icons/twitter.svg";
-// import { ReactComponent as Instagram } from "assets/icons/instagram.svg";
-// import { ReactComponent as LinkedIn } from "assets/icons/linkedin.svg";
-import Button from "components/Inputs/Button";
+import { ReactComponent as Twitter } from "assets/icons/twitter.svg";
+import { ReactComponent as Instagram } from "assets/icons/instagram.svg";
+import { ReactComponent as LinkedIn } from "assets/icons/linkedin.svg";
 import Logo from "assets/images/logo-main.png";
 import { useNavigate } from "react-router-dom";
-import Input from "./Inputs/Input";
-import { useState } from "react";
-// import { motion } from "framer-motion";
-// import { fadeIn } from "variants.js";
+import { motion } from "framer-motion";
+import { fadeIn } from "variants.js";
 
 const Footer = ({ submitEmail }) => {
   const navigate = useNavigate();
-  const [emailAddress, setEmailAddress] = useState("");
 
-  const handleChange = (e) => {
-    setEmailAddress(e.target.value);
-  };
 
-  const menuOptions = [
-    {
-      name: "Projects",
-      link: "/projects",
-    },
-    {
-      name: "Services",
-      link: "/services",
-    },
-    {
-      name: "About us",
-      link: "/about-us",
-    },
-    // {
-    //   name: "Blog",
-    //   link: "/blog",
-    // },
-  ];
+
+    const quickLink = [
+      {
+        name: "Plans and Pricing",
+        link: "/solutions",
+      },
+      {
+        name: "About us",
+        link: "/about-us",
+      },
+      {
+        name: "Contact us",
+        link: "/contact-us",
+      },
+    ];
+
+    const getInTouch = [
+      {
+        name: "FAQs",
+        link: "/faqs",
+      },
+      {
+        name: "Contact us",
+        link: "/contact-us",
+      },
+    ];
 
   return (
     <div className="bg-[#F0F0F0]">
       <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto">
-        <div className="lg:pt-[7rem] pt-[4rem] pb-[6rem] lg:grid block grid-cols-2">
+        <div className="lg:pt-[7rem] pt-[4rem] pb-[3rem] lg:grid block grid-cols-2">
           <div>
             <img
               src={Logo}
@@ -56,61 +57,68 @@ const Footer = ({ submitEmail }) => {
             </p>
           </div>
           <hr className="lg:hidden block border-b border-b-[#a0a0a01b] my-[3rem]" />
-          <div className="lg:pl-[6rem]">
-            <p className="font-obviously_m lg:text-[18px] text-[14px] leading-[24px] lg:mb-6 mb-2 text-brand_primary">
-              Want to stay updated with what’s happening at Compass Survey?
-            </p>
-            <p className="font-publica_sans_r text-[12px] leading-[24px] mb-4">
-              Join our newsletter and be the first to know about our upcoming
-              updates.
-            </p>
-            <Input
-              placeholder="Email Address"
-              type="email"
-              id="emailAddress"
-              name="emailAddress"
-              // readOnly={loading}
-              value={emailAddress}
-              onChange={handleChange}
-              showError={false}
-            />
-            <div className="flex gap-4">
-              <Button
-                name={"Subscribe"}
-                theme={"secondary"}
-                arrowIcon={true}
-                onClick={submitEmail}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="border-t border-brand_primary py-[2rem] flex flex-col lg:flex-row justify-between items-center">
-          <div className="flex justify-between items-center gap-4 mb-2 lg:mb-0">
-            {menuOptions.map((item, index) => (
-              <>
+
+          <div className="w-full flex justify-between flex-wrap">
+            <motion.div
+              variants={fadeIn("up", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+              className="mb-[3rem]"
+            >
+              <h6 className="text-[14px] font-publica_sans_m mb-[15px]">
+                Quick Link
+              </h6>
+              {quickLink.map((item, index) => (
                 <p
-                  className="font-publica_sans_r text-[12px] leading-[24px] text-brand_primary cursor-pointer"
+                  key={index}
+                  className="text-[14px] font-publica_sans_l mb-[15px] cursor-pointer"
                   onClick={() => {
                     navigate(item.link);
                   }}
                 >
                   {item.name}
                 </p>
-                {index !== menuOptions.length - 1 && (
-                  <div className="rounded-full bg-[#6E6E6E] w-[6px] h-[6px]"></div>
-                )}
-              </>
-            ))}
-          </div>
-          <div className="flex flex-col lg:flex-row items-center gap-4 justify-between lg:justify-start">
-            <p className="font-publica_sans_r text-[12px] leading-[24px] text-brand_primary">
-              All rights reserved &copy; 2025
-            </p>
-            {/* <div className="flex items-center gap-4">
-              <Twitter />
-              <Instagram />
-              <LinkedIn />
-            </div> */}
+              ))}
+            </motion.div>
+            <motion.div
+              variants={fadeIn("up", 0.4)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+              className="mb-[3rem]"
+            >
+              <h6 className="text-[14px] font-publica_sans_m mb-[15px]">
+                Get in Touch
+              </h6>
+              {getInTouch.map((item, index) => (
+                <p
+                  key={index}
+                  className="text-[14px] font-publica_sans_l mb-[15px] cursor-pointer"
+                  onClick={() => {
+                    navigate(item.link);
+                  }}
+                >
+                  {item.name}
+                </p>
+              ))}
+            </motion.div>
+            <motion.div
+              variants={fadeIn("up", 0.4)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: true }}
+              className="basis-[47%] md:basis-[30%] lg:basis-[20%] mb-[3rem]"
+            >
+              <h6 className="text-[14px] font-publica_sans_m mb-[15px]">
+                Follow us on
+              </h6>
+              <div className="flex items-center gap-4">
+                <Twitter />
+                <Instagram />
+                <LinkedIn />
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

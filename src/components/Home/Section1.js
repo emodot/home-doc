@@ -16,7 +16,6 @@ const Section1 = () => {
     <div
       className=""
       style={{
-        // height: "100%",
         width: "100%",
         backgroundImage: `url(${Section1BG})`,
         backgroundSize: "cover",
