@@ -12,9 +12,9 @@ const Home = () => {
   return (
     <>
       <SEO
-        title="Compass Survey - Innovating Survey Solutions for Africa"
-        description="Compass Survey Limited delivers topographic and offshore positioning services across Nigeria and Africa’s oil and gas industry. Backed by experienced personnel and advanced technology, we provide reliable, on-time solutions that consistently exceed client expectations."
-        name="Compass Survey - Innovating Survey Solutions for Africa"
+        title="Home Doc - Caring for the Ones Who Once Cared for Us"
+        description="Home Doc provides compassionate, reliable, and personalized elderly care services that promote comfort, independence, and peace of mind"
+        name="Home Doc - Caring for the Ones Who Once Cared for Us"
         type="website"
       />
       <Section1 />
