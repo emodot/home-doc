@@ -8,7 +8,7 @@ import MainLayout from "../layouts/MainLayout";
 const Home = lazy(() => import("../pages/home"));
 // const AboutUs = lazy(() => import("../pages/about-us"));
 // const ContactUs = lazy(() => import("../pages/contact-us"));
-// const Services = lazy(() => import("../pages/services"));
+const WhatWeDo = lazy(() => import("../pages/what-we-do"));
 // const HydrographicPositioningSurvey = lazy(() => import("../pages/services/hydrographic-positioning-survey"));
 // const HighResolutionGeophysicalSurvey = lazy(() => import("../pages/services/high-resolution-geophysical-survey"));
 // const GeotechnicalSiteInvestigations = lazy(() => import("../pages/services/geotechnical-site-investigations"));
@@ -37,10 +37,10 @@ const router = createBrowserRouter([
       //   path: "/contact-us",
       //   element: <ContactUs />,
       // },
-      // {
-      //   path: "/services",
-      //   element: <Services />,
-      // },
+      {
+        path: "/what-we-do",
+        element: <WhatWeDo />,
+      },
       // {
       //   path: "/services/hydrographic-positioning-survey",
       //   element: <HydrographicPositioningSurvey />,
