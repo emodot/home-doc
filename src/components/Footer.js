@@ -29,7 +29,7 @@ const Footer = ({ submitEmail }) => {
     const getInTouch = [
       {
         name: "FAQs",
-        link: "/faqs",
+        link: "/faq",
       },
       {
         name: "Contact us",

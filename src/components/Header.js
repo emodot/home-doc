@@ -48,13 +48,6 @@ const Header = () => {
     [pathname]
   );
 
-  const lightTheme =
-    pathname.toLowerCase().includes("faq") ||
-    pathname.toLowerCase().includes("contact-us") ||
-    pathname.toLowerCase().includes("solutions") ||
-    pathname.toLowerCase().includes("terms-conditions") ||
-    pathname.toLowerCase().includes("cookies-policy") ||
-    pathname.toLowerCase().includes("privacy-policy");
 
   return (
     <motion.div
@@ -65,9 +58,7 @@ const Header = () => {
       className="absolute w-full py-[20px]"
     >
       <div
-        className={`flex justify-between items-center h-[60px] lg:h-[80px] max-w-[1300px] lg:w-[95%] w-[90%] 2xl:w-full m-auto rounded-[50px] ${
-          lightTheme ? "bg-white" : "backdrop-blur-sm bg-white/10"
-        }`}
+        className={`flex justify-between items-center h-[60px] lg:h-[80px] max-w-[1300px] lg:w-[95%] w-[90%] 2xl:w-full m-auto rounded-[50px]`}
       >
         <img
           src={Logo}
