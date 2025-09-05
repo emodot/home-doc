@@ -4,22 +4,29 @@ import { fadeIn } from "variants.js";
 import Button from "components/Inputs/Button";
 import { useNavigate } from "react-router-dom";
 
-const GetRightCare = () => {
+const GetRightCare = ({
+  header1,
+  header2,
+  subText,
+  btnText1,
+  btn1Link,
+  btnText2,
+  btn2Link,
+}) => {
   const navigate = useNavigate();
-  
+
   return (
     <div className="max-w-[1300px] mx-auto">
       <div className="mt-[4rem] rounded-[20px] bg-brand_secondary px-[3rem] py-[5rem] grid lg:grid-cols-4 grid-cols-1 items-center">
         <div className="col-span-3">
           <p className="font-publica_sans_r text-[30px] leading-10 text-white">
-            Get the Right Care, Right Now
+            {header1}
           </p>
           <p className="font-publica_sans_r text-[30px] text-white">
-            Don’t wait for things to get overwhelming.
+            {header2}
           </p>
           <p className="font-publica_sans_l text-[16px] text-[#FFFFFFB2] mt-[20px] w-[50%]">
-            Book a consultation today and take the first step toward
-            compassionate, stress-free eldercare.
+            {subText}
           </p>
         </div>
         <motion.div
@@ -30,19 +37,19 @@ const GetRightCare = () => {
           viewport={{ once: true }}
         >
           <Button
-            name={"Get Started"}
+            name={btnText1}
             theme={"primary"}
             textClassName="sm:text-14 !text-12"
             className="!w-[130px] xs:w-auto"
-            onClick={() => navigate("/about-us")}
+            onClick={() => navigate(btn1Link)}
           />
           <Button
-            name={"View Pricing"}
+            name={btnText2}
             theme={"invert_transparent"}
             arrowIcon={true}
             textClassName="sm:text-14 !text-12"
             className="4xs:w-auto"
-            onClick={() => navigate("/contact-us")}
+            onClick={() => navigate(btn2Link)}
           />
         </motion.div>
       </div>

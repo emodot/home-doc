@@ -149,7 +149,16 @@ const Section4 = () => {
           </div>
         </div>
       </div>
-      <GetRightCare />
+      <GetRightCare
+        header1="Get the Right Care, Right Now"
+        header2="Don’t wait for things to get overwhelming."
+        subText="Book a consultation today and take the first step toward
+            compassionate, stress-free eldercare."
+        btnText1="Get Started"
+        btn1Link="/"
+        btnText2="View Pricing"
+        btn2Link="/plans-and-pricing"
+      />
     </div>
   );
 };
