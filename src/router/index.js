@@ -11,7 +11,7 @@ const AboutUs = lazy(() => import("../pages/about-us"));
 const WhatWeDo = lazy(() => import("../pages/what-we-do"));
 const PlansAndPricing = lazy(() => import("../pages/plans-and-pricing"));
 const FAQ = lazy(() => import("../pages/faq"));
-// const GeotechnicalSiteInvestigations = lazy(() => import("../pages/services/geotechnical-site-investigations"));
+const TermsAndConditions = lazy(() => import("../pages/terms-and-conditions"));
 // const Projects = lazy(() => import("../pages/projects"));
 // const Blog = lazy(() => import("../pages/blog"));
 
@@ -49,10 +49,10 @@ const router = createBrowserRouter([
         path: "/faq",
         element: <FAQ />,
       },
-      // {
-      //   path: "/services/geotechnical-site-investigations",
-      //   element: <GeotechnicalSiteInvestigations />,
-      // },
+      {
+        path: "/terms-and-conditions",
+        element: <TermsAndConditions />,
+      },
       // {
       //   path: "/projects",
       //   element: <Projects />,

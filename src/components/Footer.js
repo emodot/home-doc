@@ -35,6 +35,10 @@ const Footer = ({ submitEmail }) => {
         name: "Contact us",
         link: "/contact-us",
       },
+      {
+        name: "Terms and Conditions",
+        link: "/terms-and-conditions",
+      },
     ];
 
   return (
