@@ -86,7 +86,7 @@ const Header = () => {
                 className={`cursor-pointer font-publica_sans_l text-14 pb-[5px] text-black transition-all duration-150
                   ${
                     active
-                      ? "border-b-[1.5px] border-brand_primary font-bold"
+                      ? "border-b-[1.5px] border-brand_primary font-bold text-brand_primary"
                       : "border-b-[1.5px] border-transparent"
                   }
                   hover:border-brand_primary transition-colors duration-500 px-1 py-1 pt-2

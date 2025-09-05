@@ -9,7 +9,7 @@ const WhatWeDo = () => {
   return (
     <>
       <SEO
-        title="Home Doc - Caring for the Ones Who Once Cared for Us"
+        title="What We Do - Home Doc"
         description="Home Doc provides compassionate, reliable, and personalized elderly care services that promote comfort, independence, and peace of mind"
         name="Home Doc - Caring for the Ones Who Once Cared for Us"
         type="website"

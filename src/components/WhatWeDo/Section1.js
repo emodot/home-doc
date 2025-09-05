@@ -3,14 +3,14 @@ import Section1B from "assets/images/wwd-sec-1b.jpg";
 import Section1C from "assets/images/wwd-sec-1c.jpg";
 import Section1D from "assets/images/wwd-sec-1d.jpg";
 import Section1E from "assets/images/wwd-sec-1e.jpg";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
 import GetRightCare from "components/GetRightCare";
 
 const Section1 = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const isMobile = window.innerWidth < 768;
 
 const whatWeDo = [
@@ -185,7 +185,16 @@ const whatWeDo = [
           </div>
         ))}
       </div>
-      <GetRightCare />
+      <GetRightCare
+        header1="Get the Right Care, Right Now"
+        header2="Don’t wait for things to get overwhelming."
+        subText="Book a consultation today and take the first step toward
+            compassionate, stress-free eldercare."
+        btnText1="Get Started"
+        btn1Link="/"
+        btnText2="View Pricing"
+        btn2Link="/plans-and-pricing"
+      />
     </div>
   );
 };
