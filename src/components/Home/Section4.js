@@ -63,9 +63,9 @@ const Section4 = () => {
       }}
     >
       <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto pt-[5rem] pb-[3rem]">
-        <div className="mt-[-20rem] bg-white rounded-[20px] p-[70px] mb-[3rem] shadow-lg">
+        <div className="mt-[-20rem] bg-white rounded-[20px] lg:p-[70px] p-[40px] mb-[3rem] shadow-lg">
           <div className="lg:flex justify-between items-center">
-            <div className="w-[60%]">
+            <div className="lg:w-[60%]">
               <motion.h1
                 className="font-publica_sans_r text-[14px] lg:text-[16px] lg:leading-[18px] leading-[16px] text-[#539E9C] mb-4"
                 variants={fadeIn("up", 0.2)}
@@ -76,7 +76,7 @@ const Section4 = () => {
                 How it works
               </motion.h1>
               <motion.p
-                className="font-publica_sans_r text-[32px] leading-[34px] mb-[4rem]"
+                className="font-publica_sans_r lg:text-[32px] text-[26px] leading-[34px] mb-[4rem]"
                 variants={fadeIn("up", 0.4)}
                 initial="hidden"
                 whileInView="show"
@@ -101,7 +101,7 @@ const Section4 = () => {
               />
             </motion.div>
           </div>
-          <div className="grid lg:grid-cols-3 grid-cols-1 gap-[5rem]">
+          <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-[5rem] gap-[3rem]">
             {howItWorks.map((item, index) => (
               <motion.div
                 variants={fadeIn("", 0.8 + index * 0.2)}
@@ -125,7 +125,7 @@ const Section4 = () => {
           <p className="text-[32px] text-center font-publica_sans_r mb-1">
             Who can benefit from HomeDoc.
           </p>
-          <p className="text-[16px] text-center font-publica_sans_l w-[47%] mx-auto">
+          <p className="text-[16px] text-center font-publica_sans_l lg:w-[47%] mx-auto">
             Growing old should come with dignity and support — not loneliness or
             stress. HomeDoc connects your loved ones with trusted caregivers
             right at home.

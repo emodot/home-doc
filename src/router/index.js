@@ -7,7 +7,7 @@ import MainLayout from "../layouts/MainLayout";
 // Lazy Loaded Pages
 const Home = lazy(() => import("../pages/home"));
 const AboutUs = lazy(() => import("../pages/about-us"));
-// const ContactUs = lazy(() => import("../pages/contact-us"));
+const ContactUs = lazy(() => import("../pages/contact-us"));
 const WhatWeDo = lazy(() => import("../pages/what-we-do"));
 const PlansAndPricing = lazy(() => import("../pages/plans-and-pricing"));
 const FAQ = lazy(() => import("../pages/faq"));
@@ -33,10 +33,10 @@ const router = createBrowserRouter([
         path: "/about-us",
         element: <AboutUs />,
       },
-      // {
-      //   path: "/contact-us",
-      //   element: <ContactUs />,
-      // },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
+      },
       {
         path: "/what-we-do",
         element: <WhatWeDo />,

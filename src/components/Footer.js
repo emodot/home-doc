@@ -14,15 +14,15 @@ const Footer = ({ submitEmail }) => {
     const quickLink = [
       {
         name: "Plans and Pricing",
-        link: "/solutions",
+        link: "/plans-and-pricing",
       },
       {
         name: "About us",
         link: "/about-us",
       },
       {
-        name: "Contact us",
-        link: "/contact-us",
+        name: "What we do",
+        link: "/what-we-do",
       },
     ];
 
@@ -60,7 +60,7 @@ const Footer = ({ submitEmail }) => {
               caregivers right at home.
             </p>
           </div>
-          <hr className="lg:hidden block border-b border-b-[#a0a0a01b] my-[3rem]" />
+          <hr className="lg:hidden block border border-t-0 border-b-1 border-b-neutral_stroke_1 my-[3rem]" />
 
           <div className="w-full flex justify-between flex-wrap">
             <motion.div

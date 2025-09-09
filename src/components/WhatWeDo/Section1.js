@@ -81,16 +81,7 @@ const whatWeDo = [
 ];
 
   return (
-    <div
-      className="pb-[5rem]"
-      // style={{
-      //   width: "100%",
-      //   backgroundImage: `url(${Section1BG})`,
-      //   backgroundSize: "cover",
-      //   backgroundPosition: "center",
-      //   backgroundRepeat: "no-repeat",
-      // }}
-    >
+    <div className="pb-[5rem]">
       <div className="pt-[13rem] pb-[3rem]">
         <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto">
           <motion.p
@@ -107,7 +98,7 @@ const whatWeDo = [
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-[32px] leading-[34px] w-[43%] mx-auto text-center font-publica_sans_r mb-3"
+            className="text-[32px] leading-[34px] lg:w-[43%] mx-auto text-center font-publica_sans_r mb-3"
           >
             Healthcare that meets you where you are — at home or online.
           </motion.p>
@@ -116,7 +107,7 @@ const whatWeDo = [
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-[16px] text-center font-publica_sans_l w-[45%] mx-auto mb-[5rem]"
+            className="text-[16px] text-center font-publica_sans_l lg:w-[45%] mx-auto mb-[5rem]"
           >
             At HomeDoc, we bring compassionate, professional care directly to
             your doorstep or screen. Whether you’re planning ahead or need
@@ -125,13 +116,13 @@ const whatWeDo = [
         </div>
         {whatWeDo.map((item, index) => (
           <div
-            className={`px-[50px] py-[7rem] ${
+            className={`lg:px-[50px] lg:py-[7rem] py-[4rem] ${
               index % 2 !== 0 ? "bg-[#F8F8F0]" : ""
             }`}
             key={index}
           >
             <div
-              className={`max-w-[1300px] lg:w-[95%] w-[90%] m-auto flex justify-between items-center ${
+              className={`max-w-[1300px] lg:w-[95%] w-[90%] m-auto lg:flex justify-between items-center ${
                 index % 2 !== 0 ? "flex-row-reverse" : ""
               }`}
               // dir="rtl"
@@ -146,7 +137,7 @@ const whatWeDo = [
                 <img
                   src={item.image}
                   alt="doctor"
-                  className="h-[30rem] rounded-[20px] "
+                  className="lg:h-[30rem] rounded-[20px] "
                 />
               </motion.div>
               <motion.div
@@ -154,7 +145,7 @@ const whatWeDo = [
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className="px-[45px] basis-[50%]"
+                className="lg:px-[45px] mt-8 lg:mt-0 basis-[50%]"
               >
                 <p className="font-publica_sans_r text-[24px] mb-[15px]">
                   {item.title}

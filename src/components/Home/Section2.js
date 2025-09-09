@@ -13,7 +13,7 @@ const Section2 = () => {
   return (
     <div className="">
       <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto pt-[5rem] pb-[6rem]">
-        <div className="w-[42%]">
+        <div className="lg:w-[42%]">
           <motion.h1
             className="font-publica_sans_r text-[28px] lg:text-[32px] lg:leading-[40px] leading-[30px] mb-4"
             variants={fadeIn("up", 0.2)}
@@ -44,7 +44,7 @@ const Section2 = () => {
             viewport={{ once: true }}
           >
             <div
-              className="h-[25rem] rounded-t-[20px]"
+              className="lg:h-[25rem] h-[20rem] rounded-t-[20px]"
               style={{
                 // height: "100%",
                 width: "100%",
@@ -54,7 +54,7 @@ const Section2 = () => {
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
-            <div className="px-[45px] py-[50px] ">
+            <div className="lg:px-[45px] px-[30px] lg:py-[50px] py-[40px]">
               <p className="font-publica_sans_r text-[20px] mb-[15px]">
                 At Home Care
               </p>
@@ -74,7 +74,7 @@ const Section2 = () => {
             viewport={{ once: true }}
           >
             <div
-              className="h-[25rem] rounded-t-[20px]"
+              className="lg:h-[25rem] h-[20rem] rounded-t-[20px]"
               style={{
                 // height: "100%",
                 width: "100%",
@@ -84,7 +84,7 @@ const Section2 = () => {
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
-            <div className="px-[45px] py-[50px] ">
+            <div className="lg:px-[45px] px-[30px] lg:py-[50px] py-[40px]">
               <p className="font-publica_sans_r text-[20px] mb-[15px]">
                 Virtual Consultation
               </p>
@@ -115,7 +115,7 @@ const Section2 = () => {
             gracefully.
           </motion.p>
           <motion.div
-            className="xs:flex sm:gap-4 gap-2"
+            className="xs:flex sm:gap-4 gap-2 mt-[30px] lg:mt-0"
             variants={fadeIn("up", 0.6)}
             initial="hidden"
             whileInView="show"

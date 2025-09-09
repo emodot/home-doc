@@ -13,7 +13,7 @@ const Section3 = () => {
   return (
     <div className="bg-brand_secondary">
       <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto pt-[5rem] pb-[20rem]">
-        <div className="w-[60%]">
+        <div className="lg:w-[60%]">
           <motion.h1
             className="font-publica_sans_r text-[14px] lg:text-[16px] lg:leading-[18px] leading-[16px] text-[#539E9C] mb-4"
             variants={fadeIn("up", 0.2)}
@@ -24,7 +24,7 @@ const Section3 = () => {
             What we do
           </motion.h1>
           <motion.p
-            className="font-publica_sans_r text-[32px] leading-[34px] mb-[4rem] text-white"
+            className="font-publica_sans_r lg:text-[32px] text-[28px] leading-[34px] mb-[4rem] text-white"
             variants={fadeIn("up", 0.4)}
             initial="hidden"
             whileInView="show"
@@ -34,9 +34,9 @@ const Section3 = () => {
             healthcare home.
           </motion.p>
         </div>
-        <div className="grid lg:grid-cols-3 grid-cols-1 gap-[3rem]">
+        <div className="lg:grid grid-cols-3 gap-[3rem]">
           <motion.div
-            className="rounded-[20px] bg-[#F0F2F3] px-[50px] py-[40px] col-span-1"
+            className="rounded-[20px] bg-[#F0F2F3] lg:px-[50px] px-[20px] py-[40px] col-span-1 mb-[20px] lg:mb-0"
             variants={fadeIn("up", 0.6)}
             initial="hidden"
             whileInView="show"
@@ -58,7 +58,7 @@ const Section3 = () => {
             </div>
           </motion.div>
           <motion.div
-            className="rounded-[20px] bg-[#F8F8F0] px-[50px] py-[40px] col-span-2 grid grid-cols-2 items-center"
+            className="rounded-[20px] bg-[#F8F8F0] lg:px-[50px] px-[20px] py-[40px] col-span-2 lg:grid grid-cols-2 items-center"
             variants={fadeIn("up", 0.8)}
             initial="hidden"
             whileInView="show"
@@ -67,9 +67,9 @@ const Section3 = () => {
             <img
               src={Section3BImg}
               alt="doctor"
-              className="rounded-[20px] h-[17.5rem]"
+              className="rounded-[20px] lg:h-[17.5rem]"
             />
-            <div className="px-[45px]">
+            <div className="lg:px-[45px] mt-[20px] lg:mt-0">
               <p className="font-publica_sans_r text-[20px] mb-[15px]">
                 Health Monitoring & Preliminary Checks
               </p>

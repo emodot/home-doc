@@ -23,10 +23,10 @@ const Section1 = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto pt-[13rem] pb-[6rem] grid lg:grid-cols-2 grid-cols-1 items-center">
-        <div className="w-[80%]">
+      <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto lg:pt-[13rem] pt-[9rem] pb-[6rem] grid lg:grid-cols-2 grid-cols-1 items-center">
+        <div className="lg:w-[80%]">
           <motion.h1
-            className="font-publica_sans_r text-[45px] lg:text-[50px] lg:leading-[60px] leading-[54px] mb-4"
+            className="font-publica_sans_r text-[40px] lg:text-[50px] lg:leading-[60px] leading-[54px] mb-4"
             variants={fadeIn("up", 0.2)}
             initial="hidden"
             whileInView="show"
@@ -35,7 +35,7 @@ const Section1 = () => {
             Home-Based Elderly Care, Delivered with Compassion.
           </motion.h1>
           <motion.p
-            className="font-publica_sans_l text-14 leading-[24px] mb-6 w-[80%]"
+            className="font-publica_sans_l text-14 leading-[24px] mb-6 lg:w-[80%]"
             variants={fadeIn("up", 0.4)}
             initial="hidden"
             whileInView="show"
@@ -81,7 +81,7 @@ const Section1 = () => {
             </p>
           </motion.div>
         </div>
-        <div className="lg:pl-[4rem] relative">
+        <div className="lg:pl-[4rem] relative mt-[40px] lg:mt-0">
           <motion.img
             variants={fadeIn("up", 0.4)}
             initial="hidden"

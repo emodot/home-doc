@@ -1,4 +1,5 @@
 import { ReactComponent as LogoWhite } from "assets/icons/logo-white.svg";
+import Logo from "assets/images/logo-main.png";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as CloseMenu } from "assets/icons/close-menu.svg";
 import { useModal } from "layouts/MainLayout";
@@ -9,29 +10,30 @@ const MobileMenu = () => {
   const { closeMenu } = useModal();
   const menuOptions = [
     {
-      name: "Projects",
-      link: "/projects",
+      name: "What we do",
+      link: "/what-we-do",
     },
     {
-      name: "Services",
-      link: "/services",
+      name: "Plans and Pricing",
+      link: "/plans-and-pricing",
     },
     {
       name: "About us",
       link: "/about-us",
     },
-    // {
-    //   name: "Blog",
-    //   link: "/blog",
-    // },
+    {
+      name: "Contact Us",
+      link: "/contact-us",
+    },
   ];
   return (
-    <div className="bg-brand_primary absolute top-0 left-0 w-full h-[100vh] py-[2rem] px-[1rem] z-20">
+    <div className="bg-white absolute top-0 left-0 w-full h-[100vh] py-[2rem] px-[1rem] z-20">
       <div className="flex justify-between h-[60px]">
-        <LogoWhite
-          className="w-[8rem] cursor-pointer"
+        <img
+          src={Logo}
+          alt="logo"
+          className="w-[11rem] lg:w-[9.5rem] cursor-pointer"
           onClick={() => {
-            closeMenu();
             navigate("/");
           }}
         />
@@ -41,7 +43,7 @@ const MobileMenu = () => {
         {menuOptions.map((item, index) => (
           <p
             key={index}
-            className="font-publica_sans_r text-[20px] py-[1.5rem] text-[#ffffff] cursor-pointer border-b border-b-brand_secondary"
+            className="font-publica_sans_r text-[20px] py-[1.5rem] text-brand_secondary cursor-pointer border-b border-b-neutral_stroke_1"
             onClick={() => {
               closeMenu();
               navigate(item.link);
@@ -53,12 +55,11 @@ const MobileMenu = () => {
       </div>
       <div className="absolute bottom-[15%] left-[2rem] w-full">
         <Button
-          name={"Get in Touch"}
+          name={"Get Started"}
           theme={"secondary"}
-          arrowIcon={true}
+          className={"w-[10rem]"}
           onClick={() => {
-            closeMenu();
-            navigate("/contact-us");
+            navigate("#");
           }}
         />
       </div>
