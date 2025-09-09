@@ -37,6 +37,11 @@ const Button = ({
                     : ""
                 }
                 ${
+                  theme === "secondary" && disabled
+                    ? "bg-[#192f366c] text-[#192F36] cursor-not-allowed"
+                    : ""
+                }
+                ${
                   theme === "secondary_plus" && !disabled
                     ? "bg-brand_secondary text-[#192F36] hover:bg-white"
                     : ""

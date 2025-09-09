@@ -16,7 +16,7 @@ const Section1 = () => {
         >
           About Us
         </motion.p>
-        <div className="grid grid-cols-2 gap-[1rem] mb-[2rem]">
+        <div className="lg:grid grid-cols-2 gap-[1rem] mb-[2rem]">
           <motion.h1
             className="font-publica_sans_r lg:text-[45px] text-[32px] lg:leading-[52px] leading-[40px] lg:w-[90%] w-full lg:mb-6 mb-4"
             variants={fadeIn("up", 0.4)}

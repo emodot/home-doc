@@ -57,7 +57,7 @@ export default function OneTimeServices() {
           On-demand care for check-ups, visits, or medication drop-offs — no
           plan needed.
         </motion.p>
-        <div className="grid grid-cols-4 gap-6 mt-[3rem]">
+        <div className="grid lg:grid-cols-4 gap-6 mt-[3rem]">
           {services.map((item, index) => (
             <motion.div
               variants={fadeIn("", 0.2 + index * 0.2)}

@@ -15,7 +15,7 @@ const Section1 = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-[32px] leading-[34px] w-[43%] mx-auto text-center font-publica_sans_r mb-3"
+            className="text-[32px] leading-[34px] lg:w-[43%] mx-auto text-center font-publica_sans_r mb-3"
           >
             Plans and pricing
           </motion.p>
@@ -24,7 +24,7 @@ const Section1 = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-[16px] text-center font-publica_sans_l w-[45%] mx-auto"
+            className="text-[16px] text-center font-publica_sans_l lg:w-[45%] mx-auto"
           >
             Care, your way — home or virtual. Personalized, flexible, and
             compassionate.
