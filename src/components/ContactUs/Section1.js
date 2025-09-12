@@ -17,7 +17,6 @@ const Section1 = () => {
       phoneNumber: "",
       message: "",
     });
-    const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [responseMessage, setResponseMessage] = useState("");
     const disabled =
@@ -42,7 +41,7 @@ const Section1 = () => {
     const submit = (e) => {
     //   e.preventDefault();
     //   console.log(formData);
-    //   setLoading(true);
+      setLoading(false);
     //   fetch("https://veer-niq4.onrender.com/api/v1/landing/contact-us", {
     //     method: "POST",
     //     headers: {
@@ -174,106 +173,101 @@ const Section1 = () => {
             className="basis-[60%] xl:basis-[55%] py-[3rem] lg:py-0"
           >
             <div className="bg-white py-[3rem] px-[2rem] xl:px-[4rem] rounded-[20px]">
-              {showSuccessModal ? (
-                // <SuccessModal setShowSuccessModal={setShowSuccessModal} />
-                <></>
-              ) : (
-                <div>
-                  <h5 className="text-black font-publica_sans_r lg:text-[24px] text-[22px] leading-[30px] mb-[2rem]">
-                    Fill out the form below and we’ll get back to you within 24
-                    hours.
-                  </h5>
-                  <form onSubmit={submit}>
-                    <div className="lg:flex justify-between ">
-                      <div className="basis-[47%]">
-                        <Input
-                          label="First Name"
-                          type="text"
-                          id="firstName"
-                          name="firstName"
-                          readOnly={loading}
-                          value={formData?.firstName}
-                          onChange={handleChange}
-                          showError={false}
-                        />
-                      </div>
-                      <div className="basis-[47%]">
-                        <Input
-                          label="Last Name"
-                          type="text"
-                          id="lastName"
-                          name="lastName"
-                          readOnly={loading}
-                          value={formData?.lastName}
-                          onChange={handleChange}
-                          showError={false}
-                        />
-                      </div>
-                    </div>
-                    <div className="lg:flex justify-between ">
-                      <div className="basis-[47%]">
-                        <Input
-                          label="Email Address"
-                          type="text"
-                          id="emailAddress"
-                          name="emailAddress"
-                          readOnly={loading}
-                          value={formData?.emailAddress}
-                          onChange={handleChange}
-                          showError={false}
-                        />
-                      </div>
-                      <div className="basis-[47%]">
-                        <Input
-                          label="Phone Number"
-                          type="number"
-                          id="phoneNumber"
-                          name="phoneNumber"
-                          readOnly={loading}
-                          value={formData?.phoneNumber}
-                          onChange={handleChange}
-                          showError={false}
-                        />
-                      </div>
-                    </div>
-                    <div className="">
-                      <TextArea
-                        label={"Message"}
-                        placeholder="Start writing here"
-                        id="message"
-                        name="message"
+              <div>
+                <h5 className="text-black font-publica_sans_r lg:text-[24px] text-[22px] leading-[30px] mb-[2rem]">
+                  Fill out the form below and we’ll get back to you within 24
+                  hours.
+                </h5>
+                <form onSubmit={submit}>
+                  <div className="lg:flex justify-between ">
+                    <div className="basis-[47%]">
+                      <Input
+                        label="First Name"
+                        type="text"
+                        id="firstName"
+                        name="firstName"
                         readOnly={loading}
-                        value={formData.message}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            message: e.target.value,
-                          })
-                        }
-                        rows={3}
+                        value={formData?.firstName}
+                        onChange={handleChange}
+                        showError={false}
                       />
                     </div>
-                    {responseMessage && (
-                      <motion.p
-                        variants={fadeIn("right", 0.2)}
-                        initial="hidden"
-                        whileInView={"show"}
-                        viewport={{ once: true, amount: 0.7 }}
-                        className="py-2 px-4 text-error bg-[#fff1f1] text-14 font-publica_sans_r rounded-lg mb-6"
-                      >
-                        {responseMessage}
-                      </motion.p>
-                    )}
-                    <Button
-                      name={"Send Message"}
-                      theme="secondary"
-                      className={"w-[10rem] mt-[30px]"}
-                      disabled={disabled}
-                      loading={loading}
+                    <div className="basis-[47%]">
+                      <Input
+                        label="Last Name"
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        readOnly={loading}
+                        value={formData?.lastName}
+                        onChange={handleChange}
+                        showError={false}
+                      />
+                    </div>
+                  </div>
+                  <div className="lg:flex justify-between ">
+                    <div className="basis-[47%]">
+                      <Input
+                        label="Email Address"
+                        type="text"
+                        id="emailAddress"
+                        name="emailAddress"
+                        readOnly={loading}
+                        value={formData?.emailAddress}
+                        onChange={handleChange}
+                        showError={false}
+                      />
+                    </div>
+                    <div className="basis-[47%]">
+                      <Input
+                        label="Phone Number"
+                        type="number"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        readOnly={loading}
+                        value={formData?.phoneNumber}
+                        onChange={handleChange}
+                        showError={false}
+                      />
+                    </div>
+                  </div>
+                  <div className="">
+                    <TextArea
+                      label={"Message"}
+                      placeholder="Start writing here"
+                      id="message"
+                      name="message"
+                      readOnly={loading}
+                      value={formData.message}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          message: e.target.value,
+                        })
+                      }
+                      rows={3}
                     />
-                  </form>
-                </div>
-              )}
+                  </div>
+                  {responseMessage && (
+                    <motion.p
+                      variants={fadeIn("right", 0.2)}
+                      initial="hidden"
+                      whileInView={"show"}
+                      viewport={{ once: true, amount: 0.7 }}
+                      className="py-2 px-4 text-error bg-[#fff1f1] text-14 font-publica_sans_r rounded-lg mb-6"
+                    >
+                      {responseMessage}
+                    </motion.p>
+                  )}
+                  <Button
+                    name={"Send Message"}
+                    theme="secondary"
+                    className={"w-[10rem] mt-[30px]"}
+                    disabled={disabled}
+                    loading={loading}
+                  />
+                </form>
+              </div>
             </div>
           </motion.div>
         </div>
