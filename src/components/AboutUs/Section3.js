@@ -24,7 +24,7 @@ const Section3 = () => {
             What we do
           </motion.h1>
           <motion.p
-            className="font-publica_sans_r text-[32px] leading-[34px] mb-[4rem] text-brand_secondary"
+            className="font-publica_sans_r lgm:text-[32px] text-[28px] leading-[34px] mb-[4rem] text-brand_secondary"
             variants={fadeIn("up", 0.4)}
             initial="hidden"
             whileInView="show"
@@ -34,9 +34,9 @@ const Section3 = () => {
             healthcare home.
           </motion.p>
         </div>
-        <div className="lg:grid grid-cols-3 gap-[3rem]">
+        <div className="md:grid grid-cols-3 gap-[3rem]">
           <motion.div
-            className="rounded-[20px] bg-[#F0F2F3] lg:px-[50px] px-[20px] py-[40px] col-span-1 mb-[20px] lg:mb-0"
+            className="rounded-[20px] bg-[#F0F2F3] lg:px-[30px] lgm:px-[50px] px-[20px] lg:py-[30px] py-[40px] lgm:py-[40px] col-span-1 mb-[20px] lg:mb-0"
             variants={fadeIn("up", 0.6)}
             initial="hidden"
             whileInView="show"
@@ -58,7 +58,7 @@ const Section3 = () => {
             </div>
           </motion.div>
           <motion.div
-            className="rounded-[20px] bg-[#F8F8F0] lg:px-[50px] px-[20px] py-[40px] col-span-2 lg:grid grid-cols-2 items-center"
+            className="rounded-[20px] bg-[#F8F8F0] lg:px-[30px] lgm:px-[50px] px-[20px] lg:py-[30px] md:py-[20px] py-[40px] lgm:py-[40px] col-span-2 lg:grid grid-cols-2 gap-2 items-center h-fit"
             variants={fadeIn("up", 0.8)}
             initial="hidden"
             whileInView="show"
@@ -67,7 +67,7 @@ const Section3 = () => {
             <img
               src={Section3BImg}
               alt="doctor"
-              className="rounded-[20px] lg:h-[17.5rem]"
+              className="rounded-[20px] md:h-[10.5rem] lg:h-[17.5rem]"
             />
             <div className="lg:px-[45px] mt-[20px] lg:mt-0">
               <p className="font-publica_sans_r text-[20px] mb-[15px]">

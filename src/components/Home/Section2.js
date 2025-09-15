@@ -35,7 +35,7 @@ const Section2 = () => {
             consultation from anywhere.
           </motion.p>
         </div>
-        <div className="grid lg:grid-cols-2 grid-cols-1 gap-[5rem]">
+        <div className="grid md:grid-cols-2 grid-cols-1 md:gap-[2rem] lgm:gap-[5rem]">
           <motion.div
             className="rounded-[20px] bg-[#F0F2F3]"
             variants={fadeIn("up", 0.6)}
@@ -98,14 +98,14 @@ const Section2 = () => {
           </motion.div>
         </div>
         <motion.div
-          className="mt-[4rem] rounded-[20px] bg-brand_secondary px-[2rem] py-[3rem] grid lg:grid-cols-4 grid-cols-1"
+          className="mt-[4rem] rounded-[20px] bg-brand_secondary px-[2rem] py-[3rem] md:flex justify-between items-center gap-[2rem]"
           variants={fadeIn("up", 0.2)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
         >
           <motion.p
-            className="font-publica_sans_r text-[20px] text-white col-span-3"
+            className="font-publica_sans_r md:text-[18px] text-[20px] lg:text-[20px] text-white"
             variants={fadeIn("up", 0.4)}
             initial="hidden"
             whileInView="show"
@@ -115,7 +115,7 @@ const Section2 = () => {
             gracefully.
           </motion.p>
           <motion.div
-            className="xs:flex sm:gap-4 gap-2 mt-[30px] lg:mt-0"
+            className="xs:flex sm:gap-4 gap-2 mt-[30px] md:mt-0"
             variants={fadeIn("up", 0.6)}
             initial="hidden"
             whileInView="show"

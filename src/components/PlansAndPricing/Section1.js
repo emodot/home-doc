@@ -24,7 +24,7 @@ const Section1 = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-[16px] text-center font-publica_sans_l lg:w-[45%] mx-auto"
+            className="text-[16px] text-center font-publica_sans_l md:w-[65%] lg:w-[45%] mx-auto"
           >
             Care, your way — home or virtual. Personalized, flexible, and
             compassionate.

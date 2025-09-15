@@ -16,9 +16,9 @@ const Section1 = () => {
         >
           About Us
         </motion.p>
-        <div className="lg:grid grid-cols-2 gap-[1rem] mb-[2rem]">
+        <div className="md:grid grid-cols-2 gap-[1rem] mb-[2rem]">
           <motion.h1
-            className="font-publica_sans_r lg:text-[45px] text-[32px] lg:leading-[52px] leading-[40px] lg:w-[90%] w-full lg:mb-6 mb-4"
+            className="font-publica_sans_r lgm:text-[45px] text-[32px] lgm:leading-[52px] leading-[40px] lg:w-[90%] w-full lg:mb-6 mb-4"
             variants={fadeIn("up", 0.4)}
             initial="hidden"
             whileInView="show"
@@ -27,7 +27,7 @@ const Section1 = () => {
             Caring for the Ones Who Once Cared for Us
           </motion.h1>
           <motion.p
-            className="font-publica_sans_l lg:text-16 text-[14px] lg:leading-[24px] leading-[20px] mb-6 lg:w-[80%] w-full"
+            className="font-publica_sans_l lgm:text-16 text-[14px] lgm:leading-[24px] leading-[20px] mb-6 lg:w-[80%] w-full"
             variants={fadeIn("up", 0.6)}
             initial="hidden"
             whileInView="show"
@@ -56,7 +56,7 @@ const Section1 = () => {
         ></motion.div>
         <div className="mt-[4rem]">
           <motion.h1
-            className="font-publica_sans_r lg:text-[32px] text-[24px] lg:leading-[36px] leading-[28px] lg:w-[80%] w-full lg:mb-6 mb-4"
+            className="font-publica_sans_r lgm:text-[32px] text-[24px] lgm:leading-[36px] leading-[28px] lg:w-[80%] w-full lg:mb-6 mb-4"
             variants={fadeIn("up", 0.4)}
             initial="hidden"
             whileInView="show"
@@ -67,7 +67,7 @@ const Section1 = () => {
             offer families a better way to support their aging loved ones.
           </motion.h1>
           <motion.p
-            className="font-publica_sans_l lg:text-16 text-[14px] lg:leading-[24px] leading-[20px] lg:w-[67%] w-full"
+            className="font-publica_sans_l lg:text-16 text-[14px] lg:leading-[24px] leading-[20px] lgm:w-[67%] w-full"
             variants={fadeIn("up", 0.6)}
             initial="hidden"
             whileInView="show"

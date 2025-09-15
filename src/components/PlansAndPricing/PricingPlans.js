@@ -98,7 +98,7 @@ export default function PricingPlans() {
                   )}
                 </div>
                 <p
-                  className={`mt-2 text-[36px] font-publica_sans_m ${
+                  className={`mt-2 text-[36px] md:text-[30px] lgm:text-[36px] font-publica_sans_m ${
                     plan.highlight ? "text-white" : "text-black"
                   }`}
                 >
@@ -112,7 +112,7 @@ export default function PricingPlans() {
                   </span>
                 </p>
                 <p
-                  className={`mt-1 text-[16px] font-publica_sans_l ${
+                  className={`mt-1 lgm:text-[16px] text-[14px] font-publica_sans_l ${
                     plan.highlight ? "text-[#FFFFFFB2]" : "text-[#000000B2]"
                   } w-[80%]`}
                 >
@@ -122,11 +122,13 @@ export default function PricingPlans() {
               <ul className="mt-6 space-y-5">
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-4">
-                    {plan.highlight ? (
-                      <Check2 className={`w-5 h-5`} />
-                    ) : (
-                      <Check1 className={`w-5 h-5`} />
-                    )}
+                    <div className="w-[1.5rem]">
+                      {plan.highlight ? (
+                        <Check2 />
+                      ) : (
+                        <Check1 />
+                      )}
+                    </div>
                     <span
                       className={`text-[16px] font-publica_sans_l ${
                         plan.highlight ? "text-white" : "text-black"
