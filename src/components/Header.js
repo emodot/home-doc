@@ -96,7 +96,7 @@ const Header = () => {
             name={"Get Started"}
             theme={"primary"}
             onClick={() => {
-              navigate("#");
+              navigate("/request");
             }}
           />
         </div>

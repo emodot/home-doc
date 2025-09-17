@@ -3,6 +3,7 @@ import { lazy } from "react";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import ErrorPage from "../components/ErrorPage";
 import MainLayout from "../layouts/MainLayout";
+import BookingLayout from "../layouts/BookingLayout";
 
 // Lazy Loaded Pages
 const Home = lazy(() => import("../pages/home"));
@@ -12,12 +13,30 @@ const WhatWeDo = lazy(() => import("../pages/what-we-do"));
 const PlansAndPricing = lazy(() => import("../pages/plans-and-pricing"));
 const FAQ = lazy(() => import("../pages/faq"));
 const TermsAndConditions = lazy(() => import("../pages/terms-and-conditions"));
-// const Projects = lazy(() => import("../pages/projects"));
-// const Blog = lazy(() => import("../pages/blog"));
+const Request = lazy(() => import("../pages/request"));
+const Personal = lazy(() => import("../pages/request/personal"));
 
 const router = createBrowserRouter([
   {
-    path: "",
+    path: "/request",
+    element: (
+      <BookingLayout>
+        <Outlet />
+      </BookingLayout>
+    ),
+    children: [
+      {
+        path: "",
+        element: <Request />,
+      },
+      {
+        path: "personal",
+        element: <Personal />,
+      },
+    ],
+  },
+  {
+    path: "/",
     errorElement: <ErrorPage />,
     element: (
       <MainLayout>
