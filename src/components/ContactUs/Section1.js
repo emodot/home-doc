@@ -82,7 +82,7 @@ const Section1 = () => {
     };
   return (
     <div className="pt-[6rem] lg:pt-[7rem]">
-      <div
+      <div className="lg:py-[4rem]"
         style={{
           width: "100%",
           backgroundImage: `url(${Section1BG})`,
@@ -174,7 +174,7 @@ const Section1 = () => {
           >
             <div className="bg-white py-[3rem] px-[2rem] xl:px-[4rem] rounded-[20px]">
               <div>
-                <h5 className="text-black font-publica_sans_r lg:text-[24px] text-[22px] leading-[30px] mb-[2rem]">
+                <h5 className="text-black font-publica_sans_r lgm:text-[24px] text-[22px] leading-[30px] mb-[2rem]">
                   Fill out the form below and we’ll get back to you within 24
                   hours.
                 </h5>

@@ -98,7 +98,7 @@ const whatWeDo = [
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-[32px] leading-[34px] lg:w-[43%] mx-auto text-center font-publica_sans_r mb-3"
+            className="text-[32px] leading-[34px] md:w-[70%] lg:w-[55%] lgm:w-[43%] mx-auto text-center font-publica_sans_r mb-3"
           >
             Healthcare that meets you where you are — at home or online.
           </motion.p>
@@ -107,7 +107,7 @@ const whatWeDo = [
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-[16px] text-center font-publica_sans_l lg:w-[45%] mx-auto mb-[5rem]"
+            className="text-[16px] text-center font-publica_sans_l md:w-[80%] lg:w-[60%] lgm:w-[45%] mx-auto mb-[5rem]"
           >
             At HomeDoc, we bring compassionate, professional care directly to
             your doorstep or screen. Whether you’re planning ahead or need
@@ -122,7 +122,7 @@ const whatWeDo = [
             key={index}
           >
             <div
-              className={`max-w-[1300px] lg:w-[95%] w-[90%] m-auto lg:flex justify-between items-center ${
+              className={`max-w-[1300px] md:w-[95%] w-[90%] m-auto md:flex justify-between items-center ${
                 index % 2 !== 0 ? "flex-row-reverse" : ""
               }`}
               // dir="rtl"
@@ -137,7 +137,7 @@ const whatWeDo = [
                 <img
                   src={item.image}
                   alt="doctor"
-                  className="lg:h-[30rem] rounded-[20px] "
+                  className="lgm:h-[30rem] rounded-[20px] "
                 />
               </motion.div>
               <motion.div

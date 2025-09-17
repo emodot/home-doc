@@ -27,7 +27,7 @@ const MobileMenu = () => {
     },
   ];
   return (
-    <div className="bg-white absolute top-0 left-0 w-full h-[100vh] py-[2rem] px-[1rem] z-20">
+    <div className="bg-white absolute top-0 right-0 md:w-[70%] w-full h-[100vh] py-[2rem] px-[1rem] z-20">
       <div className="flex justify-between h-[60px]">
         <img
           src={Logo}

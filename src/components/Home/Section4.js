@@ -76,7 +76,7 @@ const Section4 = () => {
                 How it works
               </motion.h1>
               <motion.p
-                className="font-publica_sans_r lg:text-[32px] text-[26px] leading-[34px] mb-[4rem]"
+                className="font-publica_sans_r lgm:text-[32px] text-[26px] leading-[34px] mb-[4rem]"
                 variants={fadeIn("up", 0.4)}
                 initial="hidden"
                 whileInView="show"
@@ -101,7 +101,7 @@ const Section4 = () => {
               />
             </motion.div>
           </div>
-          <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-[5rem] gap-[3rem]">
+          <div className="grid md:grid-cols-3 grid-cols-1 md:gap-[2rem] lg:gap-[5rem] gap-[3rem]">
             {howItWorks.map((item, index) => (
               <motion.div
                 variants={fadeIn("", 0.8 + index * 0.2)}
@@ -113,10 +113,12 @@ const Section4 = () => {
                 <p className="text-[100px] font-publica_sans_m bg-gradient-to-b from-[#539E9C] to-[#539E9C00] text-transparent bg-clip-text">
                   {item.no}
                 </p>
-                <p className="text-[20px] font-publica_sans_m mb-3">
+                <p className="text-[20px] md:text-[18px] lg:text-[20px] font-publica_sans_m mb-3">
                   {item.title}
                 </p>
-                <p className="text-[16px] font-publica_sans_l">{item.text}</p>
+                <p className="text-[16px] md:text-[14px] lg:text-[16px] font-publica_sans_l">
+                  {item.text}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -130,7 +132,7 @@ const Section4 = () => {
             stress. HomeDoc connects your loved ones with trusted caregivers
             right at home.
           </p>
-          <div className="grid lg:grid-cols-4 grid-cols-1 gap-[5rem] mt-[5rem]">
+          <div className="grid md:grid-cols-4 grid-cols-2 md:gap-[0.5rem] lg:gap-[5rem] gap-[3rem] mt-[5rem]">
             {benefits.map((item, index) => (
               <motion.div
                 variants={fadeIn("", 0.2 + index * 0.2)}
@@ -149,16 +151,18 @@ const Section4 = () => {
           </div>
         </div>
       </div>
-      <GetRightCare
-        header1="Get the Right Care, Right Now"
-        header2="Don’t wait for things to get overwhelming."
-        subText="Book a consultation today and take the first step toward
+      <div className="">
+        <GetRightCare
+          header1="Get the Right Care, Right Now"
+          header2="Don’t wait for things to get overwhelming."
+          subText="Book a consultation today and take the first step toward
             compassionate, stress-free eldercare."
-        btnText1="Get Started"
-        btn1Link="/"
-        btnText2="View Pricing"
-        btn2Link="/plans-and-pricing"
-      />
+          btnText1="Get Started"
+          btn1Link="/"
+          btnText2="View Pricing"
+          btn2Link="/plans-and-pricing"
+        />
+      </div>
     </div>
   );
 };

@@ -23,10 +23,10 @@ const Section1 = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto lg:pt-[13rem] pt-[9rem] pb-[6rem] grid lg:grid-cols-2 grid-cols-1 items-center">
-        <div className="lg:w-[80%]">
+      <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto lg:pt-[13rem] pt-[9rem] pb-[6rem] grid md:grid-cols-2 grid-cols-1 items-center">
+        <div className="md:w-[90%] lg:w-[80%]">
           <motion.h1
-            className="font-publica_sans_r text-[40px] lg:text-[50px] lg:leading-[60px] leading-[54px] mb-4"
+            className="font-publica_sans_r text-[40px] md:text-[32px] lg:text-[40px] lgm:text-[50px] md:leading-[40px] lg:leading-[50px] lgm:leading-[60px] leading-[54px] mb-4"
             variants={fadeIn("up", 0.2)}
             initial="hidden"
             whileInView="show"
@@ -81,7 +81,7 @@ const Section1 = () => {
             </p>
           </motion.div>
         </div>
-        <div className="lg:pl-[4rem] relative mt-[40px] lg:mt-0">
+        <div className="lg:pl-[4rem] relative mt-[40px] md:mt-0">
           <motion.img
             variants={fadeIn("up", 0.4)}
             initial="hidden"

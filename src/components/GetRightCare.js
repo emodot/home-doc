@@ -16,16 +16,16 @@ const GetRightCare = ({
   const navigate = useNavigate();
 
   return (
-    <div className="max-w-[1300px] mx-auto">
-      <div className="mt-[4rem] lg:rounded-[20px] bg-brand_secondary px-[3rem] py-[5rem] grid lg:grid-cols-4 grid-cols-1 items-center">
+    <div className="max-w-[1300px] md:w-[95%] w-full mx-auto">
+      <div className="mt-[4rem] md:rounded-[20px] bg-brand_secondary px-[3rem] lg:py-[4rem] py-[5rem] lgm:py-[5rem] lg:flex justify-between items-center">
         <div className="col-span-3">
-          <p className="font-publica_sans_r lg:text-[30px] text-[24px] leading-10 text-white">
+          <p className="font-publica_sans_r lgm:text-[30px] text-[24px] leading-10 text-white">
             {header1}
           </p>
-          <p className="font-publica_sans_r lg:text-[30px] text-[24px] text-white">
+          <p className="font-publica_sans_r lgm:text-[30px] text-[24px] text-white">
             {header2}
           </p>
-          <p className="font-publica_sans_l text-[16px] text-[#FFFFFFB2] mt-[20px] lg:w-[50%]">
+          <p className="font-publica_sans_l text-[16px] text-[#FFFFFFB2] mt-[20px] lg:w-[80%] lgm:w-[50%]">
             {subText}
           </p>
         </div>

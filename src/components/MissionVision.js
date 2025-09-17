@@ -5,15 +5,15 @@ import { fadeIn } from "variants.js";
 const MissionVision = () => {
 
   return (
-    <div className="max-w-[1300px] lg:w-[95%] w-[90%] mx-auto grid lg:grid-cols-2 grid-cols-1 gap-[2rem] lg:py-[6rem] py-[4rem]">
+    <div className="max-w-[1300px] lg:w-[95%] w-[90%] mx-auto grid md:grid-cols-2 grid-cols-1 gap-[2rem] lg:py-[6rem] py-[4rem]">
       <motion.div
         variants={fadeIn("", 0.4)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="rounded-[30px] bg-brand_secondary lg:p-[4rem] p-[2rem]"
+        className="rounded-[30px] bg-brand_secondary lgm:p-[4rem] p-[2rem]"
       >
-        <p className="font-publica_sans_r text-[30px] leading-[20px] text-white">
+        <p className="font-publica_sans_r lgm:text-[30px] text-[24px] leading-[20px] text-white">
           Our Mission
         </p>
         <p className="font-publica_sans_l text-[16px] text-white mt-[30px]">
@@ -27,9 +27,9 @@ const MissionVision = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="rounded-[30px] bg-[#F8F8F0] lg:p-[4rem] p-[2rem]"
+        className="rounded-[30px] bg-[#F8F8F0] lgm:p-[4rem] p-[2rem]"
       >
-        <p className="font-publica_sans_r text-[30px] leading-[20px] text-brand_secondary ">
+        <p className="font-publica_sans_r lgm:text-[30px] text-[24px] leading-[20px] text-brand_secondary ">
           Our Vision
         </p>
         <p className="font-publica_sans_l text-[16px] text-brand_secondary mt-[30px]">
