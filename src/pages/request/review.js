@@ -1,5 +1,5 @@
 import SEO from "../../components/SEO";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
 import { ReactComponent as Edit } from "assets/icons/edit-icon-orange.svg";
