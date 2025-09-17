@@ -1,24 +1,31 @@
 import SEO from "../../components/SEO";
 import { useEffect, useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
 import Button from "components/Inputs/Button";
 import { useNavigate } from "react-router-dom";
 import Input from "components/Inputs/Input";
 import Dropdown from "components/Inputs/Dropdown";
-import nigerianStates from "countrycitystatejson"; // import the package
+import nigerianStates from "countrycitystatejson";
+import ChoosePlan from "components/Request/ChoosePlan";
+import { motion, AnimatePresence } from "framer-motion";
+import { get4rmLocal, save2Local } from "store/localStore";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Personal = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const queryParams = new URLSearchParams(window.location.search);
+  const selectPlanFromUrl = queryParams.get("selectPlan") === "true";
   const navigate = useNavigate();
+  const [showPlan, setShowPlan] = useState(selectPlanFromUrl);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     phoneNumber: "",
     age: "",
-    gendar: "",
+    gender: "",
     address: "",
     state: "",
     lga: "",
@@ -26,7 +33,7 @@ const Personal = () => {
 
   // Get all states in Nigeria
   const stateOptions = useMemo(() => {
-    const states = nigerianStates.getStatesByShort("NG");      
+    const states = nigerianStates.getStatesByShort("NG");
     return states.map((state) => ({
       name: state,
       value: state,
@@ -45,13 +52,26 @@ const Personal = () => {
     }));
   }, [formData.state]);
 
+  const selectPlan = (e) => {
+    const fromStore = get4rmLocal("requestData");
+    const requestData = {
+      ...fromStore,
+      personalDetails: { ...formData },
+      plan: e,
+    };
+
+    save2Local("requestData", requestData);
+    setShowPlan(false);
+    navigate("/request/review");
+    toast.success("Plan selected successfully!");
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   // Handle state dropdown selection
   const handleStateSelect = (option) => {
-    console.log("option", option);
     setFormData((prev) => ({
       ...prev,
       state: option.value,
@@ -67,7 +87,7 @@ const Personal = () => {
     }));
   };
 
-  const gendarOption = [
+  const genderOption = [
     {
       name: "Male",
       value: "Male",
@@ -98,25 +118,33 @@ const Personal = () => {
     (val) => !val || val.trim() === ""
   );
 
+  useEffect(() => {
+    const fromStore = get4rmLocal("requestData");
+    if (fromStore?.personalDetails) {
+      setFormData(fromStore?.personalDetails);
+    }
+  }, []);
+
   return (
     <>
+      <ToastContainer position="top-right" autoClose={3000} />
       <SEO
         title="Request Caregiver - Home Doc"
         description="Home Doc provides compassionate, reliable, and personalized elderly care services that promote comfort, independence, and peace of mind"
         name="Home Doc - Caring for the Ones Who Once Cared for Us"
         type="website"
       />
-      <div className="flex flex-col justify-center">
+      <motion.div
+        variants={fadeIn("", 0.6)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className=""
+      >
         <div>
-          <motion.p
-            variants={fadeIn("up", 0.4)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="text-[24px] leading-[24px] font-publica_sans_r mb-3"
-          >
+          <p className="text-[24px] leading-[24px] font-publica_sans_r mb-3">
             Request Personal Care
-          </motion.p>
+          </p>
         </div>
         <div className="">
           <p className="text-black text-[16px] font-publica_sans_r mb-6">
@@ -179,19 +207,20 @@ const Personal = () => {
               </p>
               <Dropdown
                 type="select"
-                id="gendar"
-                name="gendar"
+                id="gender"
+                name="gender"
                 loading={false}
-                selected={formData?.gendar}
-                options={gendarOption}
+                selected={formData?.gender}
+                options={genderOption}
                 onSelect={(e) => {
                   handleChange({
                     target: {
-                      name: "gendar",
+                      name: "gender",
                       value: e.value,
                     },
                   });
                 }}
+                placeholder="Select gender"
               />
             </div>
             <div className="col-span-2">
@@ -237,17 +266,12 @@ const Personal = () => {
                 placeholder={
                   formData.state ? "Select LGA" : "Select State First"
                 }
-                // disabled={!formData.state}
+                disabled={!formData.state}
               />
             </div>
           </div>
           <div className="mt-[2rem] flex space-x-4">
-            <motion.div
-              variants={fadeIn("up", 0.6)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-            >
+            <div>
               <Button
                 name={"Back"}
                 theme={"transparent"}
@@ -255,27 +279,30 @@ const Personal = () => {
                 className="!w-[100px] xs:w-auto sm:mb-6 mb-2"
                 onClick={() => navigate("/request")}
               />
-            </motion.div>
-            <motion.div
-              variants={fadeIn("up", 0.6)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-            >
+            </div>
+            <div>
               <Button
                 name={"Proceed to Plan "}
                 theme={"secondary"}
                 disabled={isFormIncomplete}
                 textClassName="sm:text-14 !text-12"
                 className="!w-[135px] xs:w-auto sm:mb-6 mb-2"
-                onClick={() => navigate("/")}
+                onClick={() => {
+                  if (isFormIncomplete) {
+                    toast.error(
+                      "Please complete all fields before selecting a plan."
+                    );
+                    return;
+                  }
+                  setShowPlan(true);
+                }}
               />
-            </motion.div>
+            </div>
           </div>
         </div>
         <div className="flex items-center gap-4 mt-5 mb-5">
           {menuOptions.map((item, index) => (
-            <>
+            <div key={index}>
               <p
                 className="font-publica_sans_l text-[14px] leading-[24px] text-[#000000B2] cursor-pointer"
                 onClick={() => {
@@ -287,10 +314,33 @@ const Personal = () => {
               {index !== menuOptions.length - 1 && (
                 <div className="rounded-full bg-[#6E6E6E] w-[6px] h-[6px]"></div>
               )}
-            </>
+            </div>
           ))}
         </div>
-      </div>
+      </motion.div>
+      <AnimatePresence>
+        {showPlan && (
+          <div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", duration: 0.6 }}
+            style={{
+              position: "fixed",
+              top: 0,
+              right: 0,
+              width: "100vw",
+              height: "100vh",
+              zIndex: 50,
+            }}
+          >
+            <ChoosePlan
+              closeModal={() => setShowPlan(false)}
+              selectPlan={selectPlan}
+            />
+          </div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

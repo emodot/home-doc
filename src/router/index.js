@@ -15,6 +15,8 @@ const FAQ = lazy(() => import("../pages/faq"));
 const TermsAndConditions = lazy(() => import("../pages/terms-and-conditions"));
 const Request = lazy(() => import("../pages/request"));
 const Personal = lazy(() => import("../pages/request/personal"));
+const ElderlyOne = lazy(() => import("../pages/request/elderly-one"));
+const ReviewRequest = lazy(() => import("../pages/request/review"));
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
       {
         path: "personal",
         element: <Personal />,
+      },
+      {
+        path: "elderly-one",
+        element: <ElderlyOne />,
+      },
+      {
+        path: "review",
+        element: <ReviewRequest />,
       },
     ],
   },
