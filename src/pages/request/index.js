@@ -5,27 +5,18 @@ import { fadeIn } from "variants.js";
 import RadioButtonSelect from "components/Inputs/RadioButtonSelect";
 import Button from "components/Inputs/Button";
 import { useNavigate } from "react-router-dom";
+import { save2Local } from "store/localStore";
 
 const Request = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const navigate = useNavigate();
-
-  const menuOptions = [
-    {
-      name: "Terms and Conditions Applied",
-      link: "/terms-and-conditions",
-    },
-    {
-      name: "FAQs",
-      link: "/faq",
-    },
-    {
-      name: "Need Help?",
-      link: "/contact-us",
-    },
-  ];
+  useEffect(() => {
+    // const getStore = get4rmLocal("requestData");
+    // console.log("getStore", getStore);
+    save2Local("requestData", null);
+  }, []);
 
   const [request, setRequest] = useState("");
 
@@ -37,27 +28,21 @@ const Request = () => {
         name="Home Doc - Caring for the Ones Who Once Cared for Us"
         type="website"
       />
-      <div className="flex flex-col justify-center h-[75vh]">
+      <motion.div
+        variants={fadeIn("", 0.2)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="flex flex-col justify-center h-[75vh]"
+      >
         <div>
-          <motion.p
-            variants={fadeIn("up", 0.4)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="text-[24px] leading-[24px] font-publica_sans_r mb-4"
-          >
+          <p className="text-[24px] leading-[24px] font-publica_sans_r mb-4">
             Request a Caregiver in Minutes
-          </motion.p>
-          <motion.p
-            variants={fadeIn("up", 0.6)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="text-[16px] leading-[20px] font-publica_sans_l"
-          >
+          </p>
+          <p className="text-[16px] leading-[20px] font-publica_sans_l">
             Tell us about your needs, and we’ll match you with the right
             caregiver — for yourself or a loved one.
-          </motion.p>
+          </p>
         </div>
         <div className="mt-[4rem]">
           <p className="text-black text-[16px] font-publica_sans_r">
@@ -81,12 +66,7 @@ const Request = () => {
             )}
           </div>
           <div className="mt-[5rem] flex space-x-4">
-            <motion.div
-              variants={fadeIn("up", 0.6)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-            >
+            <div>
               <Button
                 name={"Back"}
                 theme={"transparent"}
@@ -94,13 +74,8 @@ const Request = () => {
                 className="!w-[100px] xs:w-auto sm:mb-6 mb-2"
                 onClick={() => navigate("/")}
               />
-            </motion.div>
-            <motion.div
-              variants={fadeIn("up", 0.6)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-            >
+            </div>
+            <div>
               <Button
                 name={"Continue"}
                 theme={"secondary"}
@@ -108,32 +83,16 @@ const Request = () => {
                 textClassName="sm:text-14 !text-12"
                 className="!w-[130px] xs:w-auto sm:mb-6 mb-2"
                 onClick={() => {
+                  save2Local("requestData", { requestFor: request });
                   request === "For myself"
                     ? navigate("/request/personal")
-                    : navigate("/request");
+                    : navigate("/request/elderly-one");
                 }}
               />
-            </motion.div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex items-center gap-4 mb-2 lg:mb-0">
-        {menuOptions.map((item, index) => (
-          <>
-            <p
-              className="font-publica_sans_l text-[14px] leading-[24px] text-[#000000B2] cursor-pointer"
-              onClick={() => {
-                navigate(item.link);
-              }}
-            >
-              {item.name}
-            </p>
-            {index !== menuOptions.length - 1 && (
-              <div className="rounded-full bg-[#6E6E6E] w-[6px] h-[6px]"></div>
-            )}
-          </>
-        ))}
-      </div>
+      </motion.div>
     </>
   );
 };

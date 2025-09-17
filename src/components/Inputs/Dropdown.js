@@ -56,7 +56,7 @@ export default function Dropdown({
     <section
       ref={ref}
       className={`
-        mt-2 relative border cursor-pointer ${width} ${
+        mt-2 mb-[1.5rem] relative border cursor-pointer ${width} ${
         disabled ? "border-neutral_stroke_2" : ""
       } ${variant}
         ${
