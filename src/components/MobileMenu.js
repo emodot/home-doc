@@ -59,7 +59,7 @@ const MobileMenu = () => {
           theme={"secondary"}
           className={"w-[10rem]"}
           onClick={() => {
-            navigate("#");
+            navigate("/request");
           }}
         />
       </div>

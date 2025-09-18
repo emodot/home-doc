@@ -10,6 +10,7 @@ import { ReactComponent as Check2 } from "assets/icons/pricing-check-2.svg";
 import { pricingPlans } from "mocks/options";
 import { get4rmLocal } from "store/localStore";
 import ProfileInfo from "components/Request/ProfileInfo";
+import SuccessComponent from "components/SuccessComponent";
 
 // Paystack inline script loader
 const loadPaystackScript = () => {
@@ -38,6 +39,7 @@ const Review = () => {
   const fromStore = get4rmLocal("requestData");
   const [loading, setLoading] = useState(false);
   const [payError, setPayError] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // Find selected plan details
   const selectedPlan = pricingPlans.find((plan) => plan.name === fromStore?.plan);
@@ -110,7 +112,8 @@ const Review = () => {
         setLoading(false);
         // Payment successful, you can send response.reference to your backend for verification
         // For now, just navigate to a success page or show a message
-        navigate("/request/payment-success", { state: { reference: response.reference } });
+        setShowSuccess(true);
+        // navigate("/request/payment-success", { state: { reference: response.reference } });
       },
       onClose: function () {
         setLoading(false);
@@ -129,148 +132,156 @@ const Review = () => {
         name="Home Doc - Caring for the Ones Who Once Cared for Us"
         type="website"
       />
-      <motion.div
-        variants={fadeIn("", 0.2)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="lgm:w-[90%] w-full"
-      >
-        <div>
+      {showSuccess ? (
+        <motion.div>
+          <SuccessComponent />
+        </motion.div>
+      ) : (
+        <motion.div
+          variants={fadeIn("", 0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="lgm:w-[90%] w-full"
+        >
           <div>
-            <p className="text-[24px] leading-[24px] font-publica_sans_r mb-4">
-              Review your request
-            </p>
-          </div>
-          <div className="mt-[4rem]">
-            <div className="flex justify-between items-center">
-              <p
-                variants={fadeIn("up", 0.6)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="text-[16px] leading-[20px] font-publica_sans_l"
-              >
-                Selected Plan
+            <div>
+              <p className="text-[24px] leading-[24px] font-publica_sans_r mb-4">
+                Review your request
               </p>
-              <div
-                className="flex space-x-3 items-center cursor-pointer"
-                onClick={() => {
-                  fromStore.requestFor === "For myself"
-                    ? navigate("/request/personal?selectPlan=true")
-                    : navigate("/request/elderly-one?selectPlan=true");
-                }}
-              >
-                <p className="font-publica_sans_r text-[14px] text-brand_primary">
-                  Change Plan
-                </p>
-                <Edit />
-              </div>
             </div>
-            <div className="mt-8 mb-[4rem]">
-              {pricingPlans
-                .filter((plan) => plan.name === fromStore?.plan)
-                .map((plan, idx) => (
-                  <div
-                    key={idx}
-                    className={`rounded-2xl shadow-sm p-[35px] flex flex-col h-fit ${
-                      plan.highlight
-                        ? "bg-brand_secondary text-white relative"
-                        : "bg-[#F9F9F8] text-neutral-900"
-                    }`}
-                  >
-                    <div>
-                      <div className="border-b-[0.5px] border-b-[#DFE2E2] pb-[20px] mb-[10px]">
-                        <div className="flex justify-between items-center">
-                          <h3
-                            className={`text-[16px] font-publica_sans_r ${
+            <div className="mt-[4rem]">
+              <div className="flex justify-between items-center">
+                <p
+                  variants={fadeIn("up", 0.6)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  className="text-[16px] leading-[20px] font-publica_sans_l"
+                >
+                  Selected Plan
+                </p>
+                <div
+                  className="flex space-x-3 items-center cursor-pointer"
+                  onClick={() => {
+                    fromStore.requestFor === "For myself"
+                      ? navigate("/request/personal?selectPlan=true")
+                      : navigate("/request/elderly-one?selectPlan=true");
+                  }}
+                >
+                  <p className="font-publica_sans_r text-[14px] text-brand_primary">
+                    Change Plan
+                  </p>
+                  <Edit />
+                </div>
+              </div>
+              <div className="mt-8 mb-[4rem]">
+                {pricingPlans
+                  .filter((plan) => plan.name === fromStore?.plan)
+                  .map((plan, idx) => (
+                    <div
+                      key={idx}
+                      className={`rounded-2xl shadow-sm p-[35px] flex flex-col h-fit ${
+                        plan.highlight
+                          ? "bg-brand_secondary text-white relative"
+                          : "bg-[#F9F9F8] text-neutral-900"
+                      }`}
+                    >
+                      <div>
+                        <div className="border-b-[0.5px] border-b-[#DFE2E2] pb-[20px] mb-[10px]">
+                          <div className="flex justify-between items-center">
+                            <h3
+                              className={`text-[16px] font-publica_sans_r ${
+                                plan.highlight ? "text-white" : "text-black"
+                              } flex items-center gap-2`}
+                            >
+                              {plan.planIcon}
+                              {plan.name}
+                            </h3>
+                            {plan.highlight && (
+                              <span className="bg-[#DAFFDD] text-[#3AD848] text-[12px] font-publica_sans_r px-3 py-1 rounded-full">
+                                Best Plan
+                              </span>
+                            )}
+                          </div>
+                          <p
+                            className={`mt-2 text-[36px] md:text-[30px] lgm:text-[36px] font-publica_sans_m ${
                               plan.highlight ? "text-white" : "text-black"
-                            } flex items-center gap-2`}
+                            }`}
                           >
-                            {plan.planIcon}
-                            {plan.name}
-                          </h3>
-                          {plan.highlight && (
-                            <span className="bg-[#DAFFDD] text-[#3AD848] text-[12px] font-publica_sans_r px-3 py-1 rounded-full">
-                              Best Plan
+                            {plan.price}
+                            <span
+                              className={`ml-[10px] text-[16px] font-publica_sans_l ${
+                                plan.highlight
+                                  ? "text-[#FFFFFFB2]"
+                                  : "text-[#000000B2]"
+                              }`}
+                            >
+                              {plan.period}
                             </span>
-                          )}
-                        </div>
-                        <p
-                          className={`mt-2 text-[36px] md:text-[30px] lgm:text-[36px] font-publica_sans_m ${
-                            plan.highlight ? "text-white" : "text-black"
-                          }`}
-                        >
-                          {plan.price}
-                          <span
-                            className={`ml-[10px] text-[16px] font-publica_sans_l ${
+                          </p>
+                          <p
+                            className={`mt-1 lgm:text-[16px] text-[14px] font-publica_sans_l ${
                               plan.highlight
                                 ? "text-[#FFFFFFB2]"
                                 : "text-[#000000B2]"
-                            }`}
+                            } w-[80%]`}
                           >
-                            {plan.period}
-                          </span>
-                        </p>
-                        <p
-                          className={`mt-1 lgm:text-[16px] text-[14px] font-publica_sans_l ${
-                            plan.highlight
-                              ? "text-[#FFFFFFB2]"
-                              : "text-[#000000B2]"
-                          } w-[80%]`}
-                        >
-                          Best for: {plan.bestFor}
-                        </p>
+                            Best for: {plan.bestFor}
+                          </p>
+                        </div>
+                        <ul className="mt-6 space-y-5">
+                          {plan.features.map((feature, i) => (
+                            <li key={i} className="flex items-center gap-4">
+                              <div className="w-[1.5rem]">
+                                {plan.highlight ? <Check2 /> : <Check1 />}
+                              </div>
+                              <span
+                                className={`text-[16px] font-publica_sans_l ${
+                                  plan.highlight ? "text-white" : "text-black"
+                                }`}
+                              >
+                                {feature}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <ul className="mt-6 space-y-5">
-                        {plan.features.map((feature, i) => (
-                          <li key={i} className="flex items-center gap-4">
-                            <div className="w-[1.5rem]">
-                              {plan.highlight ? <Check2 /> : <Check1 />}
-                            </div>
-                            <span
-                              className={`text-[16px] font-publica_sans_l ${
-                                plan.highlight ? "text-white" : "text-black"
-                              }`}
-                            >
-                              {feature}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
                     </div>
-                  </div>
-                ))}
-            </div>
-            <ProfileInfo data={fromStore} />
-
-            <div className="mt-[5rem] w-full flex space-x-4 mb-[2rem]">
-              <div>
-                <Button
-                  name={"Back"}
-                  theme={"transparent"}
-                  textClassName="sm:text-14 !text-12"
-                  className="!w-[100px] xs:w-auto sm:mb-6 mb-2"
-                  onClick={() => window.history.back()}
-                />
+                  ))}
               </div>
-              <div className="w-full">
-                <Button
-                  name={loading ? "Processing..." : "Proceed to Payment"}
-                  theme={"primary"}
-                  textClassName="sm:text-14 !text-12"
-                  className="!w-full xs:w-auto sm:mb-6 mb-2"
-                  onClick={handlePaystackPayment}
-                  disabled={loading}
-                />
-                {payError && (
-                  <div className="text-red-500 text-[14px] mt-2">{payError}</div>
-                )}
+              <ProfileInfo data={fromStore} />
+
+              <div className="mt-[5rem] w-full flex space-x-4 mb-[2rem]">
+                <div>
+                  <Button
+                    name={"Back"}
+                    theme={"transparent"}
+                    textClassName="sm:text-14 !text-12"
+                    className="!w-[100px] xs:w-auto sm:mb-6 mb-2"
+                    onClick={() => window.history.back()}
+                  />
+                </div>
+                <div className="w-full">
+                  <Button
+                    name={loading ? "Processing..." : "Proceed to Payment"}
+                    theme={"primary"}
+                    textClassName="sm:text-14 !text-12"
+                    className="!w-full xs:w-auto sm:mb-6 mb-2"
+                    onClick={handlePaystackPayment}
+                    disabled={loading}
+                  />
+                  {payError && (
+                    <div className="text-red-500 text-[14px] mt-2">
+                      {payError}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      )}
     </>
   );
 };
