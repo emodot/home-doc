@@ -98,21 +98,6 @@ const Personal = () => {
     },
   ];
 
-  const menuOptions = [
-    {
-      name: "Terms and Conditions Applied",
-      link: "/terms-and-conditions",
-    },
-    {
-      name: "FAQs",
-      link: "/faq",
-    },
-    {
-      name: "Need Help?",
-      link: "/contact-us",
-    },
-  ];
-
   // Check if any field is empty
   const isFormIncomplete = Object.values(formData).some(
     (val) => !val || val.trim() === ""
@@ -299,23 +284,6 @@ const Personal = () => {
               />
             </div>
           </div>
-        </div>
-        <div className="flex items-center gap-4 mt-5 mb-5">
-          {menuOptions.map((item, index) => (
-            <div key={index}>
-              <p
-                className="font-publica_sans_l text-[14px] leading-[24px] text-[#000000B2] cursor-pointer"
-                onClick={() => {
-                  navigate(item.link);
-                }}
-              >
-                {item.name}
-              </p>
-              {index !== menuOptions.length - 1 && (
-                <div className="rounded-full bg-[#6E6E6E] w-[6px] h-[6px]"></div>
-              )}
-            </div>
-          ))}
         </div>
       </motion.div>
       <AnimatePresence>
