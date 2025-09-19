@@ -84,7 +84,7 @@ export default function Dropdown({
           readOnly={readOnly}
           autoComplete="off"
           className={`
-            h-[50px] rounded-[8px] px-4 text-black text-14 w-full outline-0 font-publica_sans_l
+            h-[50px] rounded-[8px] px-4 text-black text-[16px] sm:text-14 w-full outline-0 font-publica_sans_l
             cursor-pointer font-normal hide_tap border-0 capitalize  truncate
             ${
               disabled
@@ -123,7 +123,7 @@ export default function Dropdown({
                 value={search}
                 onChange={handleChange}
                 className={`
-                h-[40px] px-[16px] text-black text-14 w-[94%] outline-0 font-inter hide_tap
+                h-[40px] px-[16px] text-black text-[16px] sm:text-14 w-[94%] outline-0 font-inter hide_tap
                 rounded-[8px] font-publica_sans_r
               `}
               />
@@ -181,7 +181,9 @@ export default function Dropdown({
                     cursor-pointer hide_tap transition ease-in-out duration-500 hover:bg-[#F2F3F3]`}
                   >
                     <div className="flex items-center">
-                      <p className="text-16 font-publica_sans_r">{option?.name}</p>
+                      <p className="text-16 font-publica_sans_r">
+                        {option?.name}
+                      </p>
                     </div>
                   </div>
                 ))}

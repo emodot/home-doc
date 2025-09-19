@@ -68,7 +68,7 @@ const Input = ({
         onKeyDown={onKeyDown}
         className={`${variant} 
             ${inputError ? "border-error" : "border-neutral_stroke_1"} 
-            h-[50px] px-4 mt-2 text-brand_secondary text-14 w-full outline-0 border font-publica_sans_l hide_tap
+            h-[50px] px-4 mt-2 text-brand_secondary text-[16px] sm:text-14 w-full outline-0 border font-publica_sans_l hide_tap
             rounded-[10px] focus:border-brand_secondary focus:border
             ${
               disabled
