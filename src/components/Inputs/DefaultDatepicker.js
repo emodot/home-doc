@@ -139,7 +139,7 @@ export const DefaultDatepicker = ({
         data-testid={`test-${name}`}
         aria-labelledby={name}
         name={name}
-        className={` ${styles} border-b-border_stroke_1 h-[50px] px-4 text-14 w-full text-[#000000] outline-0 border-b font-qanelas_r  hide_tap bg-[#00000000]`}
+        className={` ${styles} border-b-border_stroke_1 h-[50px] px-4 text-[16px] sm:text-14 w-full text-[#000000] outline-0 border-b font-qanelas_r  hide_tap bg-[#00000000]`}
       />
       {showCalender && (
         <div className="absolute inset-y-0 right-4 items-center pl-3 pointer-events-none top-12">

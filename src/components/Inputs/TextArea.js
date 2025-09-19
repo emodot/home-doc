@@ -25,7 +25,7 @@ export default function TextArea({ id, name, placeholder, variant, label, value,
           readOnly={readOnly}
           value={value}
           className={`
-                border-neutral_stroke_1 mt-2 p-4 text-brand_secondary w-full outline-0 border font-publica_sans_r hide_tap
+                border-neutral_stroke_1 mt-2 p-4 text-[16px] sm:text-14 text-brand_secondary w-full outline-0 border font-publica_sans_r hide_tap
                 rounded-[5px] focus:border-brand_secondary focus:border bg-white placeholder:text-14 ${className}`}
         />
       </div>
