@@ -154,7 +154,7 @@ export default function FAQ() {
       {faqData.map((section, secIndex) => (
         <motion.div
           key={secIndex}
-          className="mb-10 grid grid-cols-5 gap-8"
+          className="mb-10 grid md:grid-cols-5 gap-8"
           variants={fadeIn("up", 0.1 * secIndex)}
           initial="hidden"
           whileInView="show"
@@ -164,10 +164,10 @@ export default function FAQ() {
             <h2 className="text-[20px] sm:text-[24px] font-publica_sans_r text-black mb-2">
               {section.section}
             </h2>
-            <p className="text-[#00000099] font-publica_sans_l mb-6 w-[85%]">{section.description}</p>
+            <p className="text-[#00000099] font-publica_sans_l md:w-[85%]">{section.description}</p>
           </div>
 
-          <div className="space-y-4 col-span-3 pl-[20px]">
+          <div className="space-y-4 col-span-3 md:pl-[20px]">
             {section.items.map((item, qIndex) => {
               const index = `${secIndex}-${qIndex}`;
               const isOpen = openIndex === index;

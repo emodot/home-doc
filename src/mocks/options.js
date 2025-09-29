@@ -55,3 +55,5 @@ export const pricingPlans = [
     highlight: false,
   },
 ];
+
+
