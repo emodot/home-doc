@@ -25,7 +25,7 @@ const Section1 = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="text-[44px] leading-[34px] font-publica_sans_r mb-3 text-white"
+              className="text-[44px] leading-[46px] font-publica_sans_r mb-3 text-white"
             >
               Frequently Asked Questions
             </motion.p>
@@ -34,7 +34,7 @@ const Section1 = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="text-[16px] font-publica_sans_l text-[#FFFFFF99] w-[35%]"
+              className="text-[16px] font-publica_sans_l text-[#FFFFFF99] md:w-[35%]"
             >
               Browse through our FAQs to find quick answers to common queries or
               reach out for more information.

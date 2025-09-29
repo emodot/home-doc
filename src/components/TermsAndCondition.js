@@ -22,13 +22,13 @@ export default function TermsAndCondition() {
   return (
     <div className="pt-[3rem]">
       <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto py-[3rem] sm:py-[4rem] lg:py-[6rem]">
-        <div className="max-w-[1300px] lg:w-[95%] w-[90%] mx-auto mt-[3rem] mb-[5rem]">
+        <div className="mt-[3rem] mb-[5rem]">
           <motion.p
             variants={fadeIn("up", 0.2)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-[44px] leading-[34px] w-[43%] mx-auto text-center font-publica_sans_r mb-3 text-brand_secondary"
+            className="text-[44px] leading-[46px] lg:w-[43%] mx-auto text-center font-publica_sans_r mb-3 text-brand_secondary"
           >
             Terms & Conditions
           </motion.p>
@@ -37,14 +37,14 @@ export default function TermsAndCondition() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-[16px] text-center font-publica_sans_l w-[45%] mx-auto text-brand_secondary"
+            className="text-[16px] text-center font-publica_sans_l md:w-[45%] mx-auto text-brand_secondary"
           >
             Effective Date: 15th July 2025
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-3 gap-[4rem]">
-          <aside className="col-span-1 bg-[#F8F8F0] rounded-[20px] p-[2rem] h-fit sticky top-4">
+        <div className="grid lg:grid-cols-3 gap-[4rem]">
+          <aside className="hidden lg:block col-span-1 bg-[#F8F8F0] rounded-[20px] p-[2rem] h-fit sticky top-4">
             <h2 className="font-publica_sans_m text-brand_secondary text-[14px] mb-3">
               Contents
             </h2>
