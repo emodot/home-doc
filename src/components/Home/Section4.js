@@ -97,7 +97,7 @@ const Section4 = () => {
                 theme={"secondary"}
                 textClassName="sm:text-14 !text-12"
                 className="!w-[130px] xs:w-auto sm:mb-6 mb-2"
-                onClick={() => navigate("/about-us")}
+                onClick={() => navigate("/request")}
               />
             </motion.div>
           </div>
@@ -158,7 +158,7 @@ const Section4 = () => {
           subText="Book a consultation today and take the first step toward
             compassionate, stress-free eldercare."
           btnText1="Get Started"
-          btn1Link="/"
+          btn1Link="/request"
           btnText2="View Pricing"
           btn2Link="/plans-and-pricing"
         />

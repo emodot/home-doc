@@ -126,7 +126,7 @@ const Section2 = () => {
               theme={"white"}
               textClassName="sm:text-14 !text-12"
               className="!w-[130px] xs:w-auto"
-              onClick={() => navigate("/about-us")}
+              onClick={() => navigate("/request")}
             />
             <Button
               name={"View Pricing"}
@@ -134,7 +134,7 @@ const Section2 = () => {
               arrowIcon={true}
               textClassName="sm:text-14 !text-12"
               className="4xs:w-auto"
-              onClick={() => navigate("/contact-us")}
+              onClick={() => navigate("/plans-and-pricing")}
             />
           </motion.div>
         </motion.div>

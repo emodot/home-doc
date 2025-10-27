@@ -92,7 +92,7 @@ export default function PricingPlans({ selectPlan }) {
               theme={"primary"}
               className={"w-full mt-[40px]"}
               onClick={() => {
-                isRequestPage ? selectPlan(plan.name) : navigate("/contact-us");
+                isRequestPage ? selectPlan(plan.name) : navigate("/request");
               }}
             />
           </motion.div>

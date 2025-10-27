@@ -1,7 +1,7 @@
 
 import { ReactComponent as Arrow } from "assets/icons/services-arrow-right.svg";
 import { ReactComponent as OtherPlan } from "assets/icons/other-plan.svg";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
 
@@ -34,7 +34,7 @@ const services = [
 ];
 
 export default function OneTimeServices() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="bg-[#F9F9F8] py-[6rem]">
       <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto">
@@ -75,7 +75,7 @@ export default function OneTimeServices() {
               </p>
               <div className="flex justify-between items-center mt-6">
                 <p className="text-[24px] font-publica_sans_r">{item.price}</p>
-                <Arrow />
+                <Arrow onClick={() => navigate("/request")} />
               </div>
             </motion.div>
           ))}

@@ -1,8 +1,11 @@
 import Section1 from "components/ContactUs/Section1";
-import React from "react";
+import React, { useEffect } from "react";
 import SEO from "../components/SEO";
 
 const ContactUs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <SEO

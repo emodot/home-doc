@@ -82,7 +82,7 @@ const Section3 = () => {
                 theme={"secondary"}
                 textClassName="sm:text-14 !text-12"
                 className="!w-[130px] xs:w-auto sm:mb-6 mt-[2rem]"
-                onClick={() => navigate("/about-us")}
+                onClick={() => navigate("/what-we-do")}
               />
             </div>
           </motion.div>

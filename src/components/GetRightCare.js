@@ -25,7 +25,7 @@ const GetRightCare = ({
           <p className="font-publica_sans_r lgm:text-[30px] text-[24px] text-white">
             {header2}
           </p>
-          <p className="font-publica_sans_l text-[16px] text-[#FFFFFFB2] mt-[20px] lg:w-[80%] lgm:w-[50%]">
+          <p className="font-publica_sans_l text-[16px] text-[#FFFFFFB2] mt-[20px] lg:w-[80%] lgm:w-[60%]">
             {subText}
           </p>
         </div>
