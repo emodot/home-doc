@@ -144,8 +144,6 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState('0-0');
 
   const toggle = (index) => {
-    console.log(index);
-    
     setOpenIndex(openIndex === index ? null : index);
   };
 

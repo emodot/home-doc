@@ -5,9 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function ProfileInfo({ data }) {
   const { personalDetails, personalInfo, beneficiaryInfo, requestFor } =
     data;
-  const navigate = useNavigate();
-  console.log("personalDetails", data);
-  
+  const navigate = useNavigate();  
 
   return (
     <>
