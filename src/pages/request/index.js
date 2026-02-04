@@ -13,8 +13,6 @@ const Request = () => {
   }, []);
   const navigate = useNavigate();
   useEffect(() => {
-    // const getStore = get4rmLocal("requestData");
-    // console.log("getStore", getStore);
     save2Local("requestData", null);
   }, []);
 

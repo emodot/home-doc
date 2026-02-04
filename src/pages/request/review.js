@@ -64,9 +64,7 @@ const Review = () => {
   };
 
   // Paystack public key (replace with your real key in production)
-  const PAYSTACK_KEY = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY || "pk_test_5056062a30c031642ab5c1bce2c9b3879c1953ea";
-  console.log("PAYSTACK_KEY", PAYSTACK_KEY);
-  
+  const PAYSTACK_KEY = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY;  
 
   const handlePaystackPayment = async () => {
     setPayError(null);
@@ -96,6 +94,9 @@ const Review = () => {
     const handler = window.PaystackPop.setup({
       key: PAYSTACK_KEY,
       email: email,
+      firstname: fromStore?.personalDetails?.firstName || "",
+      lastname: fromStore?.personalDetails?.lastName || "",
+      phone: fromStore?.personalDetails?.phoneNumber || "",
       amount: amount,
       currency: "NGN",
       ref: "HDOC_" + Math.floor(Math.random() * 1000000000 + 1),
