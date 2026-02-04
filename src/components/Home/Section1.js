@@ -57,7 +57,7 @@ const Section1 = () => {
               theme={"secondary"}
               textClassName="sm:text-14 !text-12"
               className="!w-[130px] xs:w-auto sm:mb-6 mb-2"
-              onClick={() => navigate("/about-us")}
+              onClick={() => navigate("/request")}
             />
             <Button
               name={"View Pricing"}
@@ -65,7 +65,7 @@ const Section1 = () => {
               arrowIcon={true}
               textClassName="sm:text-14 !text-12"
               className="4xs:w-auto"
-              onClick={() => navigate("/contact-us")}
+              onClick={() => navigate("/plans-and-pricing")}
             />
           </motion.div>
           <motion.div

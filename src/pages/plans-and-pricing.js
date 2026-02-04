@@ -26,7 +26,7 @@ const PlansAndPricing = () => {
           header2="loved one’s needs."
           subText="Home-based healthcare with real human touch — starting now."
           btnText1="Get Started"
-          btn1Link="/"
+          btn1Link="/request"
           btnText2="Request Custom Plan"
           btn2Link="/"
         />

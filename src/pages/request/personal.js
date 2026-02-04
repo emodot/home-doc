@@ -23,6 +23,7 @@ const Personal = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    email: "",
     phoneNumber: "",
     age: "",
     gender: "",
@@ -172,6 +173,19 @@ const Personal = () => {
                 id="phoneNumber"
                 name="phoneNumber"
                 value={formData?.phoneNumber}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-span-2">
+              <p className="text-black text-[14px] font-publica_sans_l">
+                Your Email Address
+              </p>
+              <Input
+                placeholder="Email Address"
+                type="text"
+                id="email"
+                name="email"
+                value={formData?.email}
                 onChange={handleChange}
               />
             </div>

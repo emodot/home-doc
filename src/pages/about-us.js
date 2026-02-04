@@ -27,7 +27,7 @@ const AboutUs = () => {
           subText="Book a consultation today and take the first step toward
             compassionate, stress-free eldercare."
           btnText1="Get Started"
-          btn1Link="/"
+          btn1Link="/request"
           btnText2="View Pricing"
           btn2Link="/plans-and-pricing"
         />

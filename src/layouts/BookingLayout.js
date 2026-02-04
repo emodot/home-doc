@@ -64,9 +64,9 @@ export default function BookingLayout() {
             <div className="mb-[4rem]">
               <Outlet />
             </div>
-            <div className="absolute bottom-0 w-full bg-white py-4 flex items-center gap-4 lg:mb-0">
+            <div className="absolute bottom-0 w-full bg-white py-4 flex flex-nowrap items-center lg:mb-0">
               {menuOptions.map((item, index) => (
-                <div key={index}>
+                <div key={index} className="flex items-center">
                   <p
                     className="font-publica_sans_l lg:text-[14px] text-[12px] leading-[24px] text-[#000000B2] cursor-pointer"
                     onClick={() => {
@@ -76,7 +76,7 @@ export default function BookingLayout() {
                     {item.name}
                   </p>
                   {index !== menuOptions.length - 1 && (
-                    <div className="rounded-full bg-[#6E6E6E] w-[6px] h-[6px]"></div>
+                    <div className="rounded-full bg-[#6E6E6E] w-[6px] h-[6px] mx-6"></div>
                   )}
                 </div>
               ))}
