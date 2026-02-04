@@ -8,6 +8,9 @@ import { ReactComponent as EmailIcon } from "assets/icons/email.svg";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
+import { saveContactForm } from "services/supabaseService";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Section1 = () => {
     const [formData, setFormData] = useState({
@@ -38,59 +41,60 @@ const Section1 = () => {
       }
     }, [responseMessage]);
 
-    const submit = (e) => {
-    //   e.preventDefault();
-    //   console.log(formData);
-      setLoading(false);
-    //   fetch("https://veer-niq4.onrender.com/api/v1/landing/contact-us", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(formData),
-    //   })
-    //     .then((response) => {
-    //       return response.json().then((data) => {
-    //         if (response.ok) {
-    //           return data;
-    //         } else {
-    //           throw new Error(data.message || "Failed to send message.");
-    //         }
-    //       });
-    //     })
-    //     .then((data) => {
-    //       if (data.code === 201) {
-    //         setFormData({
-    //           firstName: "",
-    //           lastName: "",
-    //           emailAddress: "",
-    //           phoneNumber: "",
-    //           companyName: "",
-    //           message: "",
-    //         });
-    //         setShowSuccessModal(true);
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       setResponseMessage(
-    //         error.message || "An error occurred. Please try again later."
-    //       );
-    //     })
-    //     .finally(() => {
-    //       setLoading(false);
-    //     });
+    const submit = async (e) => {
+      e.preventDefault();
+      
+      if (disabled) {
+        return;
+      }
+
+      setLoading(true);
+      setResponseMessage("");
+
+      try {
+        const result = await saveContactForm(formData);
+
+        if (result.success) {
+          // Clear form on success
+          setFormData({
+            firstName: "",
+            lastName: "",
+            emailAddress: "",
+            phoneNumber: "",
+            message: "",
+          });
+          setResponseMessage("");
+          toast.success("Message sent successfully! We'll get back to you within 24 hours.");
+        } else {
+          setResponseMessage(
+            result.error || "An error occurred. Please try again later."
+          );
+          toast.error(result.error || "Failed to send message. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error submitting contact form:", error);
+        setResponseMessage(
+          error.message || "An error occurred. Please try again later."
+        );
+        toast.error("An error occurred. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
     };
   return (
-    <div className="pt-[6rem] lg:pt-[7rem]">
-      <div className="lg:py-[4rem]"
-        style={{
-          width: "100%",
-          backgroundImage: `url(${Section1BG})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
+    <>
+      <ToastContainer position="top-right" autoClose={3000} />
+      <div className="pt-[6rem] lg:pt-[7rem]">
+        <div
+          className="lg:py-[4rem]"
+          style={{
+            width: "100%",
+            backgroundImage: `url(${Section1BG})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
         <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto min-h-[90vh] pt-10 lg:pt-0 lg:grid grid-cols-2 items-center gap-10">
           <div className="w-[90%]">
             <motion.h1
@@ -271,8 +275,9 @@ const Section1 = () => {
             </div>
           </motion.div>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

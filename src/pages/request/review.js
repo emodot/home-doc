@@ -11,6 +11,9 @@ import { pricingPlans } from "mocks/options";
 import { get4rmLocal } from "store/localStore";
 import ProfileInfo from "components/Request/ProfileInfo";
 import SuccessComponent from "components/SuccessComponent";
+import { saveCareRequest } from "services/supabaseService";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Paystack inline script loader
 const loadPaystackScript = () => {
@@ -109,12 +112,43 @@ const Review = () => {
           },
         ],
       },
-      callback: function (response) {
-        setLoading(false);
-        // Payment successful, you can send response.reference to your backend for verification
-        // For now, just navigate to a success page or show a message
-        setShowSuccess(true);
-        // navigate("/request/payment-success", { state: { reference: response.reference } });
+      callback: async function (response) {
+        setLoading(true);
+        try {
+          // Prepare payment data
+          const paymentData = {
+            reference: response.reference,
+            amount: amount,
+            currency: "NGN",
+            status: "success",
+          };
+
+          // Save care request to Supabase
+          const result = await saveCareRequest(fromStore, paymentData);
+
+          if (result.success) {
+            // Clear localStorage after successful save
+            localStorage.removeItem("requestData");
+            setLoading(false);
+            setShowSuccess(true);
+            toast.success("Payment successful! Your request has been submitted.");
+          } else {
+            setLoading(false);
+            setPayError(
+              "Payment successful but failed to save your request. Please contact support with reference: " +
+                response.reference
+            );
+            toast.error("Payment successful but failed to save request. Please contact support.");
+          }
+        } catch (error) {
+          console.error("Error saving care request:", error);
+          setLoading(false);
+          setPayError(
+            "Payment successful but an error occurred. Please contact support with reference: " +
+              response.reference
+          );
+          toast.error("Payment successful but an error occurred. Please contact support.");
+        }
       },
       onClose: function () {
         setLoading(false);
@@ -127,6 +161,7 @@ const Review = () => {
 
   return (
     <>
+      <ToastContainer position="top-right" autoClose={3000} />
       <SEO
         title="Request Caregiver - Home Doc"
         description="Home Doc provides compassionate, reliable, and personalized elderly care services that promote comfort, independence, and peace of mind"
