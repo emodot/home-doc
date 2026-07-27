@@ -8,7 +8,7 @@ import { ReactComponent as EmailIcon } from "assets/icons/email.svg";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
-import { saveContactForm } from "services/supabaseService";
+import { saveContactForm } from "services/apiService";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

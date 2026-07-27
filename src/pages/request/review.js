@@ -11,7 +11,7 @@ import { pricingPlans } from "mocks/options";
 import { get4rmLocal } from "store/localStore";
 import ProfileInfo from "components/Request/ProfileInfo";
 import SuccessComponent from "components/SuccessComponent";
-import { saveCareRequest } from "services/supabaseService";
+import { saveCareRequest } from "services/apiService";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -68,6 +68,7 @@ const Review = () => {
 
   // Paystack public key (replace with your real key in production)
   const PAYSTACK_KEY = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY;  
+  // console.log('paystack key', PAYSTACK_KEY);
 
   const handlePaystackPayment = async () => {
     setPayError(null);
@@ -94,38 +95,51 @@ const Review = () => {
       return;
     }
 
-    const handler = window.PaystackPop.setup({
+
+    // Get user details - handle both request types
+    const firstName = fromStore?.personalDetails?.firstName || fromStore?.personalInfo?.firstName || "";
+    const lastName = fromStore?.personalDetails?.lastName || fromStore?.personalInfo?.lastName || "";
+    const phoneNumber = fromStore?.personalDetails?.phoneNumber || fromStore?.personalInfo?.phoneNumber || "";
+
+    // Generate unique reference
+    const paymentRef = "HDOC_" + Date.now() + "_" + Math.floor(Math.random() * 10000);
+
+    // Prepare Paystack config
+    const paystackConfig = {
       key: PAYSTACK_KEY,
       email: email,
-      firstname: fromStore?.personalDetails?.firstName || "",
-      lastname: fromStore?.personalDetails?.lastName || "",
-      phone: fromStore?.personalDetails?.phoneNumber || "",
       amount: amount,
       currency: "NGN",
-      ref: "HDOC_" + Math.floor(Math.random() * 1000000000 + 1),
-      metadata: {
+      ref: paymentRef,
+    };
+
+    // Add optional fields only if they have values
+    if (firstName) paystackConfig.firstname = firstName;
+    if (lastName) paystackConfig.lastname = lastName;
+    if (phoneNumber) paystackConfig.phone = phoneNumber;
+
+    // Add metadata only if plan exists
+    if (selectedPlan?.name) {
+      paystackConfig.metadata = {
         custom_fields: [
           {
             display_name: "Plan",
             variable_name: "plan",
-            value: selectedPlan?.name || "",
+            value: selectedPlan.name,
           },
         ],
-      },
-      callback: async function (response) {
-        setLoading(true);
-        try {
-          // Prepare payment data
-          const paymentData = {
-            reference: response.reference,
-            amount: amount,
-            currency: "NGN",
-            status: "success",
-          };
+      };
+    }
 
-          // Save care request to Supabase
-          const result = await saveCareRequest(fromStore, paymentData);
+    // Add callback and onClose to config
+    paystackConfig.callback = function (response) {
+      // Paystack callback should be synchronous, handle async work separately
+      setLoading(true);
 
+      // The backend independently re-verifies this reference with Paystack
+      // before saving anything, so we only pass it along here.
+      saveCareRequest(fromStore, response.reference)
+        .then((result) => {
           if (result.success) {
             // Clear localStorage after successful save
             localStorage.removeItem("requestData");
@@ -140,7 +154,8 @@ const Review = () => {
             );
             toast.error("Payment successful but failed to save request. Please contact support.");
           }
-        } catch (error) {
+        })
+        .catch((error) => {
           console.error("Error saving care request:", error);
           setLoading(false);
           setPayError(
@@ -148,15 +163,34 @@ const Review = () => {
               response.reference
           );
           toast.error("Payment successful but an error occurred. Please contact support.");
-        }
-      },
-      onClose: function () {
-        setLoading(false);
-        // Optionally show a message or do nothing
-      },
-    });
+        });
+    };
 
-    handler.openIframe();
+    paystackConfig.onClose = function () {
+      setLoading(false);
+      setPayError("Payment window was closed. Please try again.");
+      toast.info("Payment was cancelled. You can try again.");
+    };
+
+    try {
+      // Verify PaystackPop is available
+      if (!window.PaystackPop || typeof window.PaystackPop.setup !== 'function') {
+        throw new Error('Paystack script not loaded properly');
+      }
+
+      const handler = window.PaystackPop.setup(paystackConfig);
+      
+      if (!handler || typeof handler.openIframe !== 'function') {
+        throw new Error('Failed to initialize Paystack handler');
+      }
+
+      handler.openIframe();
+    } catch (error) {
+      console.error('Paystack setup error:', error);
+      setLoading(false);
+      setPayError(`Payment initialization failed: ${error.message}. Please refresh and try again.`);
+      toast.error('Failed to initialize payment. Please try again.');
+    }
   };
 
   return (
@@ -188,7 +222,7 @@ const Review = () => {
             </div>
             <div className="mt-[4rem]">
               <div className="flex justify-between items-center">
-                <p
+                <motion.p
                   variants={fadeIn("up", 0.6)}
                   initial="hidden"
                   whileInView="show"
@@ -196,7 +230,7 @@ const Review = () => {
                   className="text-[16px] leading-[20px] font-publica_sans_l"
                 >
                   Selected Plan
-                </p>
+                </motion.p>
                 <div
                   className="flex space-x-3 items-center cursor-pointer"
                   onClick={() => {

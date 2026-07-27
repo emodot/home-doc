@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Requester {
+  id          String   @id @default(uuid())
+  firstName   String
+  lastName    String
+  email       String
+  phoneNumber String
+  age         String?
+  gender      String?
+  address     String?
+  state       String?
+  lga         String?
+  createdAt   DateTime @default(now())
+
+  careRequests CareRequest[]
+}
+
+model Beneficiary {
+  id            String @id @default(uuid())
+  firstName     String
+  lastName      String
+  phoneNumber   String
+  age           String
+  gender        String
+  relationship  String
+  address       String
+  state         String
+  lga           String
+
+  careRequestId String
+  careRequest   CareRequest @relation(fields: [careRequestId], references: [id])
+}
+
+model CareRequest {
+  id               String   @id @default(uuid())
+  isForSelf        Boolean
+  planName         String
+  paymentReference String   @unique
+  paymentStatus    String
+  paymentAmount    Int
+  paymentCurrency  String   @default("NGN")
+  createdAt        DateTime @default(now())
+
+  requesterId   String
+  requester     Requester     @relation(fields: [requesterId], references: [id])
+  beneficiaries Beneficiary[]
+}
+
+model ContactSubmission {
+  id          String   @id @default(uuid())
+  firstName   String
+  lastName    String
+  email       String
+  phoneNumber String
+  message     String
+  createdAt   DateTime @default(now())
+}
