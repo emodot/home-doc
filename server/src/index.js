@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { careRequestsRouter } from "./routes/careRequests.js";
 import { contactRouter } from "./routes/contact.js";
+import { plansRouter } from "./routes/plans.js";
 import { adminAuthRouter } from "./routes/adminAuth.js";
 import { adminRouter } from "./routes/admin.js";
 import { submissionRateLimit } from "./middleware/rateLimit.js";
@@ -18,6 +19,7 @@ app.get("/health", (req, res) => res.json({ ok: true }));
 
 app.use("/api/care-requests", submissionRateLimit, careRequestsRouter);
 app.use("/api/contact", submissionRateLimit, contactRouter);
+app.use("/api/plans", plansRouter);
 app.use("/api/admin", adminAuthRouter);
 app.use("/api/admin", adminRouter);
 

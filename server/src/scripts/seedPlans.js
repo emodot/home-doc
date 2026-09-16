@@ -1,28 +1,28 @@
-import { ReactComponent as OtherPlan } from "assets/icons/other-plan.svg";
-import { ReactComponent as PremiumPlan } from "assets/icons/premium-plan.svg";
+import "dotenv/config";
+import { prisma } from "../lib/prisma.js";
 
-export const pricingPlans = [
+const PLANS = [
   {
     name: "Basic Plan",
-    planIcon: <OtherPlan />,
-    price: "₦10,000",
-    period: "/month",
+    priceKobo: 1_000_000,
     bestFor: "Occasional check-ins and virtual support",
+    icon: "other",
+    highlight: false,
+    sortOrder: 1,
     features: [
       "2 virtual consultations/month",
       "Drug/medication coordination",
       "Monthly WhatsApp briefing to family",
       "Invites to social gatherings",
     ],
-    button: "Get Started",
-    highlight: false,
   },
   {
     name: "Silver Plan",
-    planIcon: <OtherPlan />,
-    price: "₦30,000",
-    period: "/month",
+    priceKobo: 3_000_000,
     bestFor: "Light support and regular check-ins",
+    icon: "other",
+    highlight: false,
+    sortOrder: 2,
     features: [
       "1 doctor home visit/month",
       "2 virtual consultations/month",
@@ -33,15 +33,14 @@ export const pricingPlans = [
       "Emergency response line (business hours)",
       "Invites to social gatherings",
     ],
-    button: "Get Started",
-    highlight: false,
   },
   {
     name: "Gold Plan",
-    planIcon: <PremiumPlan />,
-    price: "₦62,000",
-    period: "/month",
+    priceKobo: 6_200_000,
     bestFor: "Frequent care with round-the-clock emergency support",
+    icon: "premium",
+    highlight: true,
+    sortOrder: 3,
     features: [
       "1 doctor home visit/month",
       "2 virtual consultations/month",
@@ -54,15 +53,14 @@ export const pricingPlans = [
       "Caregiver family training included",
       "Invites to social gatherings",
     ],
-    button: "Get Started",
-    highlight: true, // This one is the "Best Plan"
   },
   {
     name: "Platinum Plan",
-    planIcon: <OtherPlan />,
-    price: "₦100,000",
-    period: "/month",
+    priceKobo: 10_000_000,
     bestFor: "Full geriatric management for complex care needs",
+    icon: "other",
+    highlight: false,
+    sortOrder: 4,
     features: [
       "Everything in Gold, plus:",
       "Monthly Comprehensive Geriatric Assessment (CGA)",
@@ -76,9 +74,24 @@ export const pricingPlans = [
       "Monthly psychosocial wellness check",
       "Caregiver family counselling (2 sessions/year)",
     ],
-    button: "Get Started",
-    highlight: false,
   },
 ];
 
+async function main() {
+  for (const plan of PLANS) {
+    await prisma.plan.upsert({
+      where: { name: plan.name },
+      update: {},
+      create: plan,
+    });
+  }
+  const count = await prisma.plan.count();
+  console.log(`Plans seeded. Total plans in database: ${count}`);
+}
 
+main()
+  .catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  })
+  .finally(() => prisma.$disconnect());

@@ -1,9 +1,10 @@
 import React from "react";
 import { lazy } from "react";
-import { createBrowserRouter, Outlet } from "react-router-dom";
+import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
 import ErrorPage from "../components/ErrorPage";
 import MainLayout from "../layouts/MainLayout";
 import BookingLayout from "../layouts/BookingLayout";
+import AdminLayout from "../layouts/AdminLayout";
 
 // Lazy Loaded Pages
 const Home = lazy(() => import("../pages/home"));
@@ -18,7 +19,10 @@ const Personal = lazy(() => import("../pages/request/personal"));
 const ElderlyOne = lazy(() => import("../pages/request/elderly-one"));
 const ReviewRequest = lazy(() => import("../pages/request/review"));
 const AdminLogin = lazy(() => import("../pages/admin/login"));
-const AdminDashboard = lazy(() => import("../pages/admin/dashboard"));
+const AdminOverview = lazy(() => import("../pages/admin/overview"));
+const AdminCareRequests = lazy(() => import("../pages/admin/care-requests"));
+const AdminContactSubmissions = lazy(() => import("../pages/admin/contact-submissions"));
+const AdminPlans = lazy(() => import("../pages/admin/plans"));
 
 const router = createBrowserRouter([
   {
@@ -52,8 +56,15 @@ const router = createBrowserRouter([
     element: <AdminLogin />,
   },
   {
-    path: "/admin/dashboard",
-    element: <AdminDashboard />,
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      { path: "", element: <Navigate to="/admin/overview" replace /> },
+      { path: "overview", element: <AdminOverview /> },
+      { path: "care-requests", element: <AdminCareRequests /> },
+      { path: "contact-submissions", element: <AdminContactSubmissions /> },
+      { path: "plans", element: <AdminPlans /> },
+    ],
   },
   {
     path: "/",

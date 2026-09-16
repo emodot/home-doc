@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { prisma } from "../lib/prisma.js";
-import { PLAN_PRICES_KOBO } from "../lib/plans.js";
 import { verifyPaystackTransaction, PaymentVerificationError } from "../lib/paystack.js";
 import { sendCareRequestEmails } from "../lib/email.js";
 import { careRequestSchema } from "../validation/schemas.js";
@@ -16,10 +15,11 @@ careRequestsRouter.post("/", async (req, res) => {
   const { requestFor, plan, paymentReference, personalDetails, personalInfo, beneficiaryInfo } = parsed.data;
   const isForSelf = requestFor === "For myself";
 
-  const expectedAmount = PLAN_PRICES_KOBO[plan];
-  if (!expectedAmount) {
+  const selectedPlan = await prisma.plan.findUnique({ where: { name: plan } });
+  if (!selectedPlan) {
     return res.status(400).json({ error: `Unknown plan: ${plan}` });
   }
+  const expectedAmount = selectedPlan.priceKobo;
 
   let verifiedPayment;
   try {
