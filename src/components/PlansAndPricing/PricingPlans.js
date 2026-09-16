@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ReactComponent as Check1 } from "assets/icons/pricing-check-1.svg";
 import { ReactComponent as Check2 } from "assets/icons/pricing-check-2.svg";
 import Button from "components/Inputs/Button";
@@ -5,23 +6,26 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
 import { pricingPlans } from "mocks/options";
+import PlanFeaturesModal from "components/PlansAndPricing/PlanFeaturesModal";
 
+const PREVIEW_COUNT = 5;
 
 export default function PricingPlans({ selectPlan }) {
   const navigate = useNavigate();
   const location = useLocation();
   const isRequestPage = location.pathname.includes("request");
+  const [modalPlan, setModalPlan] = useState(null);
   return (
     <div
       className={`bg-white px-4 sm:px-6 lg:px-8 ${
         isRequestPage ? "py-[30px] " : "py-16 "
       }}`}
     >
-      <div className="max-w-7xl mx-auto grid gap-6 lg:grid-cols-3">
+      <div className="max-w-7xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {pricingPlans.map((plan, idx) => (
           <motion.div
             key={idx}
-            className={`rounded-2xl shadow-sm p-[35px] flex flex-col h-fit ${
+            className={`rounded-2xl shadow-sm p-[25px] flex flex-col h-full ${
               plan.highlight
                 ? "bg-brand_secondary text-white relative"
                 : "bg-[#F9F9F8] text-neutral-900"
@@ -31,7 +35,7 @@ export default function PricingPlans({ selectPlan }) {
             whileInView="show"
             viewport={{ once: true }}
           >
-            <div>
+            <div className="flex flex-col flex-grow">
               <div className="border-b-[0.5px] border-b-[#DFE2E2] pb-[20px] mb-[10px]">
                 <div className="flex justify-between items-center">
                   <h3
@@ -71,7 +75,7 @@ export default function PricingPlans({ selectPlan }) {
                 </p>
               </div>
               <ul className="mt-6 space-y-5">
-                {plan.features.map((feature, i) => (
+                {plan.features.slice(0, PREVIEW_COUNT).map((feature, i) => (
                   <li key={i} className="flex items-center gap-4">
                     <div className="w-[1.5rem]">
                       {plan.highlight ? <Check2 /> : <Check1 />}
@@ -86,6 +90,17 @@ export default function PricingPlans({ selectPlan }) {
                   </li>
                 ))}
               </ul>
+              {plan.features.length > PREVIEW_COUNT && (
+                <button
+                  type="button"
+                  onClick={() => setModalPlan(plan)}
+                  className={`mt-5 text-[14px] font-publica_sans_l underline underline-offset-2 text-left ${
+                    plan.highlight ? "text-white" : "text-black"
+                  }`}
+                >
+                  See all {plan.features.length} features
+                </button>
+              )}
             </div>
             <Button
               name={`${isRequestPage ? "Select Plan" : "Get Started"}`}
@@ -98,6 +113,7 @@ export default function PricingPlans({ selectPlan }) {
           </motion.div>
         ))}
       </div>
+      <PlanFeaturesModal plan={modalPlan} onClose={() => setModalPlan(null)} />
     </div>
   );
 }

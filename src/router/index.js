@@ -17,6 +17,8 @@ const Request = lazy(() => import("../pages/request"));
 const Personal = lazy(() => import("../pages/request/personal"));
 const ElderlyOne = lazy(() => import("../pages/request/elderly-one"));
 const ReviewRequest = lazy(() => import("../pages/request/review"));
+const AdminLogin = lazy(() => import("../pages/admin/login"));
+const AdminDashboard = lazy(() => import("../pages/admin/dashboard"));
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
         element: <ReviewRequest />,
       },
     ],
+  },
+  {
+    path: "/admin/login",
+    element: <AdminLogin />,
+  },
+  {
+    path: "/admin/dashboard",
+    element: <AdminDashboard />,
   },
   {
     path: "/",
