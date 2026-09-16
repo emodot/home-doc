@@ -7,7 +7,10 @@ import Button from "components/Inputs/Button";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Check1 } from "assets/icons/pricing-check-1.svg";
 import { ReactComponent as Check2 } from "assets/icons/pricing-check-2.svg";
-import { pricingPlans } from "mocks/options";
+import { usePlans } from "hooks/usePlans";
+import { PlanIcon } from "components/PlansAndPricing/PricingPlans";
+import { formatNaira } from "utils/formatMoney";
+import Spinner from "components/Spinner";
 import { get4rmLocal } from "store/localStore";
 import ProfileInfo from "components/Request/ProfileInfo";
 import SuccessComponent from "components/SuccessComponent";
@@ -44,16 +47,10 @@ const Review = () => {
   const [payError, setPayError] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // Find selected plan details
-  const selectedPlan = pricingPlans.find((plan) => plan.name === fromStore?.plan);
+  const { plans, loading: plansLoading } = usePlans();
 
-  // Helper to extract price as number (assuming price is like "₦20,000")
-  const getPlanAmount = (plan) => {
-    if (!plan) return 0;
-    // Remove non-numeric except dot and comma, then parse
-    const num = plan.price.replace(/[^\d.,]/g, "").replace(/,/g, "");
-    return parseInt(num, 10) * 100; // Paystack expects kobo
-  };
+  // Find selected plan details
+  const selectedPlan = plans?.find((plan) => plan.name === fromStore?.plan);
 
   // Get user email for payment
   const getUserEmail = () => {
@@ -80,7 +77,7 @@ const Review = () => {
       return;
     }
 
-    const amount = getPlanAmount(selectedPlan);
+    const amount = selectedPlan?.priceKobo || 0;
     const email = getUserEmail();
 
     if (!email) {
@@ -202,7 +199,11 @@ const Review = () => {
         name="Home Doc - Caring for the Ones Who Once Cared for Us"
         type="website"
       />
-      {showSuccess ? (
+      {plansLoading ? (
+        <div className="flex justify-center py-[6rem]">
+          <Spinner />
+        </div>
+      ) : showSuccess ? (
         <motion.div>
           <SuccessComponent />
         </motion.div>
@@ -246,7 +247,7 @@ const Review = () => {
                 </div>
               </div>
               <div className="mt-8 mb-[4rem]">
-                {pricingPlans
+                {(plans || [])
                   .filter((plan) => plan.name === fromStore?.plan)
                   .map((plan, idx) => (
                     <div
@@ -265,7 +266,7 @@ const Review = () => {
                                 plan.highlight ? "text-white" : "text-black"
                               } flex items-center gap-2`}
                             >
-                              {plan.planIcon}
+                              <PlanIcon icon={plan.icon} />
                               {plan.name}
                             </h3>
                             {plan.highlight && (
@@ -279,7 +280,7 @@ const Review = () => {
                               plan.highlight ? "text-white" : "text-black"
                             }`}
                           >
-                            {plan.price}
+                            {formatNaira(plan.priceKobo)}
                             <span
                               className={`ml-[10px] text-[16px] font-publica_sans_l ${
                                 plan.highlight

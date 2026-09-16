@@ -45,6 +45,36 @@ export const fetchCareRequests = () => adminRequest("/api/admin/care-requests");
 
 export const fetchContactSubmissions = () => adminRequest("/api/admin/contact-submissions");
 
+export const fetchOverview = () => adminRequest("/api/admin/overview");
+
+export const deleteContactSubmission = (id) =>
+  adminRequest(`/api/admin/contact-submissions/${id}`, { method: "DELETE" });
+
+export const fetchAdminPlans = () => adminRequest("/api/admin/plans");
+
+export const createPlan = (plan) =>
+  adminRequest("/api/admin/plans", { method: "POST", body: JSON.stringify(plan) });
+
+export const updatePlan = (id, plan) =>
+  adminRequest(`/api/admin/plans/${id}`, { method: "PATCH", body: JSON.stringify(plan) });
+
+export const deletePlan = (id) => adminRequest(`/api/admin/plans/${id}`, { method: "DELETE" });
+
+/**
+ * Fetch the publicly visible pricing plans.
+ * @returns {Promise<Array>} - Active plans, ordered for display
+ */
+export const fetchPlans = async () => {
+  const response = await fetch(`${API_URL}/api/plans`);
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(result.error || `HTTP error! status: ${response.status}`);
+  }
+
+  return result.data;
+};
+
 /**
  * Submit a care request after a successful Paystack payment.
  * The backend independently verifies the payment with Paystack before saving.
