@@ -70,10 +70,11 @@ model Plan {
 }
 
 model Admin {
-  id           String   @id @default(uuid())
-  username     String   @unique
-  passwordHash String
-  createdAt    DateTime @default(now())
+  id                String   @id @default(uuid())
+  username          String   @unique
+  passwordHash      String
+  passwordChangedAt DateTime @default(now())
+  createdAt         DateTime @default(now())
 }
 
 model ContactSubmission {

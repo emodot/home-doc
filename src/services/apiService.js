@@ -41,6 +41,12 @@ export const adminLogout = () => adminRequest("/api/admin/logout", { method: "PO
 
 export const getAdminSession = () => adminRequest("/api/admin/me");
 
+export const changeAdminPassword = (currentPassword, newPassword) =>
+  adminRequest("/api/admin/change-password", {
+    method: "POST",
+    body: JSON.stringify({ currentPassword, newPassword }),
+  });
+
 export const fetchCareRequests = () => adminRequest("/api/admin/care-requests");
 
 export const fetchContactSubmissions = () => adminRequest("/api/admin/contact-submissions");

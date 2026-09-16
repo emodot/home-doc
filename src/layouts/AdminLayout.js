@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Logo from "assets/images/logo-main.png";
 import Spinner from "components/Spinner";
+import ChangePasswordModal from "components/Admin/ChangePasswordModal";
 import { getAdminSession, adminLogout } from "services/apiService";
 
 const navItems = [
@@ -15,6 +18,7 @@ const AdminLayout = () => {
   const navigate = useNavigate();
   const [session, setSession] = useState(null);
   const [checking, setChecking] = useState(true);
+  const [changingPassword, setChangingPassword] = useState(false);
 
   useEffect(() => {
     getAdminSession()
@@ -66,6 +70,12 @@ const AdminLayout = () => {
             Signed in as {session?.username}
           </p>
           <button
+            onClick={() => setChangingPassword(true)}
+            className="font-publica_sans_l text-14 text-[#FFFFFFB2] hover:text-white block mb-2"
+          >
+            Change password
+          </button>
+          <button
             onClick={handleLogout}
             className="font-publica_sans_r text-14 text-brand_primary"
           >
@@ -77,9 +87,20 @@ const AdminLayout = () => {
       <div className="flex-1 lg:ml-[260px] min-w-0">
         <header className="lg:hidden bg-brand_secondary px-4 py-4 flex justify-between items-center">
           <img src={Logo} alt="Home Doc" className="w-[7rem] brightness-0 invert" />
-          <button onClick={handleLogout} className="font-publica_sans_r text-14 text-brand_primary">
-            Log out
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setChangingPassword(true)}
+              className="font-publica_sans_l text-12 text-[#FFFFFFB2]"
+            >
+              Password
+            </button>
+            <button
+              onClick={handleLogout}
+              className="font-publica_sans_r text-12 text-brand_primary"
+            >
+              Log out
+            </button>
+          </div>
         </header>
 
         <nav className="lg:hidden flex gap-2 overflow-x-auto px-4 py-3 bg-white border-b border-neutral_stroke_1">
@@ -102,6 +123,17 @@ const AdminLayout = () => {
           <Outlet />
         </main>
       </div>
+
+      <ToastContainer position="top-right" autoClose={3000} />
+
+      <ChangePasswordModal
+        open={changingPassword}
+        onClose={() => setChangingPassword(false)}
+        onSuccess={() => {
+          setChangingPassword(false);
+          toast.success("Password updated. Other devices have been signed out.");
+        }}
+      />
     </div>
   );
 };
