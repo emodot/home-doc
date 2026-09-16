@@ -6,7 +6,7 @@ import Spinner from "components/Spinner";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
-import { usePlans } from "hooks/usePlans";
+import { usePricing } from "store/PricingProvider";
 import { formatNaira } from "utils/formatMoney";
 import { PlanIcon } from "components/PlansAndPricing/PlanIcon";
 import PlanFeaturesModal from "components/PlansAndPricing/PlanFeaturesModal";
@@ -18,7 +18,7 @@ export default function PricingPlans({ selectPlan }) {
   const location = useLocation();
   const isRequestPage = location.pathname.includes("request");
   const [modalPlan, setModalPlan] = useState(null);
-  const { plans, loading, error } = usePlans();
+  const { plans, loading, error } = usePricing();
 
   if (loading) {
     return (

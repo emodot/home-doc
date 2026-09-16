@@ -7,7 +7,7 @@ import Button from "components/Inputs/Button";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Check1 } from "assets/icons/pricing-check-1.svg";
 import { ReactComponent as Check2 } from "assets/icons/pricing-check-2.svg";
-import { usePlans } from "hooks/usePlans";
+import { usePricing } from "store/PricingProvider";
 import { PlanIcon } from "components/PlansAndPricing/PlanIcon";
 import { formatNaira } from "utils/formatMoney";
 import Spinner from "components/Spinner";
@@ -47,7 +47,7 @@ const Review = () => {
   const [payError, setPayError] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const { plans, loading: plansLoading } = usePlans();
+  const { plans, loading: plansLoading } = usePricing();
 
   // Find selected plan details
   const selectedPlan = plans?.find((plan) => plan.name === fromStore?.plan);

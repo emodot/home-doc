@@ -82,6 +82,32 @@ export const fetchPlans = async () => {
 };
 
 /**
+ * Fetch the publicly visible one-time services.
+ * @returns {Promise<Array>} - Active services, ordered for display
+ */
+export const fetchServices = async () => {
+  const response = await fetch(`${API_URL}/api/services`);
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(result.error || `HTTP error! status: ${response.status}`);
+  }
+
+  return result.data;
+};
+
+export const fetchAdminServices = () => adminRequest("/api/admin/services");
+
+export const createService = (service) =>
+  adminRequest("/api/admin/services", { method: "POST", body: JSON.stringify(service) });
+
+export const updateService = (id, service) =>
+  adminRequest(`/api/admin/services/${id}`, { method: "PATCH", body: JSON.stringify(service) });
+
+export const deleteService = (id) =>
+  adminRequest(`/api/admin/services/${id}`, { method: "DELETE" });
+
+/**
  * Submit a care request after a successful Paystack payment.
  * The backend independently verifies the payment with Paystack before saving.
  * @param {Object} requestData - The request data from localStorage

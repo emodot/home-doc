@@ -4,37 +4,17 @@ import { ReactComponent as OtherPlan } from "assets/icons/other-plan.svg";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeIn } from "variants.js";
-
-const services = [
-  {
-    name: "Virtual Consultation (per session)",
-    planIcon: <OtherPlan />,
-    price: "₦10,000",
-  },
-  {
-    name: "At-Home Visit (per session)",
-    planIcon: <OtherPlan />,
-    price: "₦20,000",
-  },
-  {
-    name: "Preliminary Health Check",
-    planIcon: <OtherPlan />,
-    price: "₦15,000",
-  },
-  {
-    name: "Companion Visit (2 hrs)",
-    planIcon: <OtherPlan />,
-    price: "₦12,000",
-  },
-  {
-    name: "Medication Drop-Off (per trip)",
-    planIcon: <OtherPlan />,
-    price: "₦5,000",
-  },
-];
+import { usePricing } from "store/PricingProvider";
+import { formatNaira } from "utils/formatMoney";
 
 export default function OneTimeServices() {
   const navigate = useNavigate();
+  const { services } = usePricing();
+
+  if (!services || services.length === 0) {
+    return null;
+  }
+
   return (
     <div className="bg-[#F9F9F8] py-[6rem]">
       <div className="max-w-[1300px] lg:w-[95%] w-[90%] m-auto">
@@ -65,16 +45,18 @@ export default function OneTimeServices() {
               whileInView="show"
               viewport={{ once: true }}
               className="bg-white p-5 rounded-[20px]"
-              key={index}
+              key={item.id}
             >
               <p
                 className={`text-[16px] leading-[18px] font-publica_sans_l flex items-center gap-2`}
               >
-                {item.planIcon}
+                <OtherPlan />
                 {item.name}
               </p>
               <div className="flex justify-between items-center mt-6">
-                <p className="text-[24px] font-publica_sans_r">{item.price}</p>
+                <p className="text-[24px] font-publica_sans_r">
+                  {formatNaira(item.priceKobo)}
+                </p>
                 <Arrow onClick={() => navigate("/request")} />
               </div>
             </motion.div>
