@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactComponent as CloseMenu } from "assets/icons/close-menu.svg";
 import { ReactComponent as Check1 } from "assets/icons/pricing-check-1.svg";
+import { PlanIcon } from "components/PlansAndPricing/PlanIcon";
+import { formatNaira } from "utils/formatMoney";
 
 export default function PlanFeaturesModal({ plan, onClose }) {
   useEffect(() => {
@@ -37,11 +39,11 @@ export default function PlanFeaturesModal({ plan, onClose }) {
             <div className="flex justify-between items-start mb-6">
               <div>
                 <h3 className="text-[16px] font-publica_sans_r text-black flex items-center gap-2">
-                  {plan.planIcon}
+                  <PlanIcon icon={plan.icon} />
                   {plan.name}
                 </h3>
                 <p className="mt-2 text-[30px] font-publica_sans_m text-black">
-                  {plan.price}
+                  {formatNaira(plan.priceKobo)}
                   <span className="ml-[10px] text-[16px] font-publica_sans_l text-[#000000B2]">
                     {plan.period}
                   </span>
