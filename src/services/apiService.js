@@ -16,6 +16,35 @@ async function postJSON(path, payload) {
   return result;
 }
 
+async function adminRequest(path, options = {}) {
+  const response = await fetch(`${API_URL}${path}`, {
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    ...options,
+  });
+
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    const error = new Error(result.error || `HTTP error! status: ${response.status}`);
+    error.status = response.status;
+    throw error;
+  }
+
+  return result;
+}
+
+export const adminLogin = (username, password) =>
+  adminRequest("/api/admin/login", { method: "POST", body: JSON.stringify({ username, password }) });
+
+export const adminLogout = () => adminRequest("/api/admin/logout", { method: "POST" });
+
+export const getAdminSession = () => adminRequest("/api/admin/me");
+
+export const fetchCareRequests = () => adminRequest("/api/admin/care-requests");
+
+export const fetchContactSubmissions = () => adminRequest("/api/admin/contact-submissions");
+
 /**
  * Submit a care request after a successful Paystack payment.
  * The backend independently verifies the payment with Paystack before saving.

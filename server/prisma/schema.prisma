@@ -54,6 +54,13 @@ model CareRequest {
   beneficiaries Beneficiary[]
 }
 
+model Admin {
+  id           String   @id @default(uuid())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
 model ContactSubmission {
   id          String   @id @default(uuid())
   firstName   String
