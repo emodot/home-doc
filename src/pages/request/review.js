@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { ReactComponent as Check1 } from "assets/icons/pricing-check-1.svg";
 import { ReactComponent as Check2 } from "assets/icons/pricing-check-2.svg";
 import { usePlans } from "hooks/usePlans";
-import { PlanIcon } from "components/PlansAndPricing/PricingPlans";
+import { PlanIcon } from "components/PlansAndPricing/PlanIcon";
 import { formatNaira } from "utils/formatMoney";
 import Spinner from "components/Spinner";
 import { get4rmLocal } from "store/localStore";
