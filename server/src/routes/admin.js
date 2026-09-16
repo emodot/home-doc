@@ -136,3 +136,67 @@ adminRouter.delete("/plans/:id", async (req, res) => {
     return res.status(500).json({ error: "Failed to delete plan" });
   }
 });
+
+const serviceSchema = z.object({
+  name: z.string().min(1),
+  priceKobo: z.number().int().positive(),
+  sortOrder: z.number().int().optional(),
+  isActive: z.boolean().optional(),
+});
+
+adminRouter.get("/services", async (req, res) => {
+  const services = await prisma.service.findMany({ orderBy: { sortOrder: "asc" } });
+  return res.json({ data: services });
+});
+
+adminRouter.post("/services", async (req, res) => {
+  const parsed = serviceSchema.safeParse(req.body);
+  if (!parsed.success) {
+    return res.status(400).json({ error: "Invalid service", details: parsed.error.flatten() });
+  }
+
+  try {
+    const service = await prisma.service.create({ data: parsed.data });
+    return res.status(201).json({ data: service });
+  } catch (error) {
+    if (error.code === "P2002") {
+      return res.status(409).json({ error: "A service with that name already exists" });
+    }
+    console.error("Failed to create service:", error);
+    return res.status(500).json({ error: "Failed to create service" });
+  }
+});
+
+adminRouter.patch("/services/:id", async (req, res) => {
+  const parsed = serviceSchema.partial().safeParse(req.body);
+  if (!parsed.success) {
+    return res.status(400).json({ error: "Invalid service", details: parsed.error.flatten() });
+  }
+
+  try {
+    const service = await prisma.service.update({ where: { id: req.params.id }, data: parsed.data });
+    return res.json({ data: service });
+  } catch (error) {
+    if (error.code === "P2025") {
+      return res.status(404).json({ error: "Service not found" });
+    }
+    if (error.code === "P2002") {
+      return res.status(409).json({ error: "A service with that name already exists" });
+    }
+    console.error("Failed to update service:", error);
+    return res.status(500).json({ error: "Failed to update service" });
+  }
+});
+
+adminRouter.delete("/services/:id", async (req, res) => {
+  try {
+    await prisma.service.delete({ where: { id: req.params.id } });
+    return res.json({ data: { deleted: true } });
+  } catch (error) {
+    if (error.code === "P2025") {
+      return res.status(404).json({ error: "Service not found" });
+    }
+    console.error("Failed to delete service:", error);
+    return res.status(500).json({ error: "Failed to delete service" });
+  }
+});

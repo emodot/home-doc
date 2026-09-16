@@ -10,7 +10,8 @@
     "seed:plans": "node src/scripts/seedPlans.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "seed:services": "node src/scripts/seedServices.js"
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",

@@ -8,6 +8,7 @@ import Spinner from "components/Spinner";
 import DataTable from "components/Admin/DataTable";
 import SideModal from "components/Admin/SideModal";
 import ConfirmModal from "components/Admin/ConfirmModal";
+import ServicesSection from "components/Admin/ServicesSection";
 import { ReactComponent as DeleteIcon } from "assets/icons/delete-icon-red.svg";
 
 const EMPTY_PLAN = {
@@ -344,6 +345,8 @@ const Plans = () => {
         onConfirm={handleDelete}
         onCancel={() => setPendingDelete(null)}
       />
+
+      <ServicesSection />
     </motion.div>
   );
 };
